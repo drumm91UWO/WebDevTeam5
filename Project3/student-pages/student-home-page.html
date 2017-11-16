@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>UWO WebClicker</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" media="all" href="../WebClickerStylesheet.css">
+    </head>
+
+    <body>
+
+        <header>
+            <img id="logo" src="../images/UWOWebClicker.png" width="300">
+        </header>
+
+        <nav>
+
+             <p class="selected"><a href="student-home-page.html">Next Question</a></p>
+             <p><a href="student-review-page.html">Review</a></p>
+             <p><a href="student-change-password-page.html">Change Password</a></p>
+             <p><a href="student-log-out-page.html">Log Out</a></p>
+
+        </nav>
+
+        <div id="main">
+
+            <div id="content">
+                <form class="box" action="student-question-page.html" method="post">
+                    <p>Are you currently in class?
+                        Has the instructor activated the next question?
+                    </p>
+                    <p>Then click this button.</p>
+                    <input type="submit" name="submit" value="Show Question"/>
+                </form>
+            </div>
+        </div>
+
+    </body>
+</html>
