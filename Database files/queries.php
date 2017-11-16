@@ -15,7 +15,7 @@
     } catch (PDOException $e) {
         db_disconnect();
         exit("Aborting: There was a database error when inserting " .
-             "a new book.");
+             "a new book. ");
     }
 
   }
