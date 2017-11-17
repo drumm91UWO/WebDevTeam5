@@ -13,9 +13,8 @@
       $stmt->execute([$id, $question_statement, $correct_answer, $points, $description, $keywords,$section_number,$number_correct_answers]);
       return true;
     } catch (PDOException $e) {
-        db_disconnect();
-        exit("Aborting: There was a database error when inserting " .
-             "a new book. ");
+        dbDisconnect();
+        exit("Aborting: There was a database error when trying to insert the question.");
     }
 
   }
@@ -42,10 +41,61 @@
     return  $stmt->fetchAll(PDO::FETCH_ASSOC);
 	
   } catch (PDOException $e) {
-      db_disconnect();
-      exit("Aborting: There was a database error when listing " .
-           "existing books.");
+      dbDisconnect();
+      exit("Aborting: There was a database error when trying to retrieve the question.");
   }
+
+  }
+
+
+  function retrieve_student_password($user)
+  {
+      global $db;
+
+      try
+      {
+        $query = "SELECT password FROM students WHERE username = '$user'";
+
+        $stmt = $db->prepare($query);
+        $stmt->execute([]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+      }
+      catch (PDOException $e)
+      {
+          echo $e;
+          dbDisconnect();
+          exit("There was a database error when trying to retrieve your password.");
+      }
+  }
+
+  
+  function check_student_username($username)
+  {
+    global $db;
+
+    try 
+    {
+        $usernameExists = false;
+        $query = "SELECT `username` FROM `students` WHERE `username` = '$username'";
+        $stmt = $db->prepare($query);
+        $stmt->execute([]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        if ($user === null)
+        {
+          $usernameExists = false;
+        }
+        else{
+          $usernameExists = true;
+        }
+
+        return $usernameExists;
+    }
+    catch (PDOException $e)
+    {
+
+    }
 
   }
 
