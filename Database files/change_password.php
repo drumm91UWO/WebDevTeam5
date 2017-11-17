@@ -3,10 +3,6 @@
 require_once('queries.php');
 require_once('initialize.php');
 
-$username =null;
-$oldPassword = null;
-$newPassword1 = null;
-$newPassword2 = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
@@ -20,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 
 
-function change_password($user)
+function change_password($username)
 {
     global $db;
 
@@ -28,28 +24,25 @@ function change_password($user)
     $newPassword = $_POST['newpassword'];
     $newPassword2 = $_POST['newpassword2'];
 
-    $oldPassHash = retrieve_student_password($user);
+    $oldPassHash = retrieve_student_password($username);
     $oldPassHash = $oldPassHash['password'];
 
 
-    if (!check_student_username($user))
+    if (!student_username_exists($username))
     {
-        echo '<br/>no such username exists in the database.';
-        //readfile("changepassword.html");
+        readfile("changepassword.html"); // reload page
+        echo '<br/>No such username exists in the database.';
 
     }
-    if (!verify_old_password($oldPassword, $oldPassHash))
-    {
-    
-        echo '<br/>Old Password does not match your current password. ';
-        //readfile("changepassword.html");
-
+    else if  (!passwords_match($oldPassword, $oldPassHash))
+    {        
+        readfile("changepassword.html"); // reload page
+        echo '<br/>Old Password does not match your current password.';
     }
     else if ($newPassword != $newPassword2)
     {
-        echo '<br/>Password do not match.';
-        //readfile("changepassword.html");
-        return;
+        readfile("changepassword.html"); // reload page
+        echo '<br/>New passwords do not match.';
     }
     else
     {
@@ -60,10 +53,13 @@ function change_password($user)
         {
             $query = "UPDATE `students`
                       SET `password` = '$newHash'
-                      WHERE `username` = '$user'"; 
+                      WHERE `username` = '$username'"; 
             $stmt = $db->prepare($query);
             $stmt->execute([]);
 
+            update_student_num_password_changes($username);
+
+            readFile("changepassword.html");
             echo '<br/>Password Changed!';
 
             return true;
@@ -75,23 +71,19 @@ function change_password($user)
             exit("<br/>Failed to change password");
         }
 
-        echo 'reached else';
     }
 }
 
 
-function verify_old_password($password, $hash)
+function passwords_match($password, $hash)
 {
-    echo '<br/>verifying password....';
 
     if(password_verify($password, $hash))
     {
-        echo '<br/>password is valid!';
         return true;
     }
     else
     {
-        echo '<br/>Invalid password!';
         return false;
     }
 }

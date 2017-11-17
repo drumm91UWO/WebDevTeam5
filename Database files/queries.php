@@ -48,13 +48,13 @@
   }
 
 
-  function retrieve_student_password($user)
+  function retrieve_student_password($username)
   {
       global $db;
 
       try
       {
-        $query = "SELECT password FROM students WHERE username = '$user'";
+        $query = "SELECT password FROM students WHERE username = '$username'";
 
         $stmt = $db->prepare($query);
         $stmt->execute([]);
@@ -62,14 +62,32 @@
       }
       catch (PDOException $e)
       {
-          echo $e;
           dbDisconnect();
           exit("There was a database error when trying to retrieve your password.");
       }
   }
 
+
+  function update_student_num_password_changes($username)
+  {
+      global $db;
+
+      try
+      {
+          $query = "UPDATE `students` 
+                    SET `number_password_changes` = number_password_changes + 1
+                    WHERE `username` = '$username'";
+          $stmt = $db->prepare($query);
+          $stmt->execute([]);
+      }
+      catch (PDOException $e)
+      {
+
+      }
+  }
+
   
-  function check_student_username($username)
+  function student_username_exists($username)
   {
     global $db;
 
@@ -81,12 +99,12 @@
         $stmt->execute([]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
-        if ($user === null)
+        if ($username == null)
         {
           $usernameExists = false;
         }
-        else{
+        else
+        {
           $usernameExists = true;
         }
 
