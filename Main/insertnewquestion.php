@@ -27,7 +27,7 @@
 			//validate input
 			if($questionStatement && $correctAnswerIsExactly && $numberOfPoints && $description && 
 				$keywords && $sectionNumber && $phpGraderCode){
-				?><p>Nothing was null</p><?php
+				?><p>Question submitted successfully!</p><?php
 				if($id){
 					insert_question($id, $status, $questionStatement, $correctAnswerIsExactly, $numberOfPoints, 
 					$description, $keywords, $sectionNumber, null, null, null, null, $phpGraderCode, null);
