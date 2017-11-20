@@ -58,13 +58,33 @@
 
         $stmt = $db->prepare($query);
         $stmt->execute([]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC); // returns the student's hashed password
       }
       catch (PDOException $e)
       {
           dbDisconnect();
           exit("There was a database error when trying to retrieve your password.");
       }
+  }
+
+
+  function retrieve_instructor_password($username)
+  {
+    global $db;
+
+    try
+    {
+        $query = "SELECT password FROM instructors WHERE username = '$username'";
+
+        $stmt = $db->prepare($query);
+        $stmt->execute([]);
+        return $stmt->fetch(PDO::FETCH_ASSOC); // returns the instructor's hashed password
+    }
+    catch (PDOException $e)
+    {
+      dbDisconnect();
+      exit("There was a database error when trying to retrieve your password.");
+    }
   }
 
 
@@ -82,8 +102,27 @@
       }
       catch (PDOException $e)
       {
-
+          // something went wrong when updating the number of password changes
       }
+  }
+
+
+  function update_instructor_num_password_changes($username)
+  {
+    global $db;
+
+    try
+    {
+      $query = "UPDATE `instructors`
+                SET `num_password_changes` = number_password_changes + 1
+                WHERE `username` = '$username'";
+      $stmt = $db->prepare($query);
+      $stmt->execute([]);
+    }
+    catch (PDOException $e)
+    {
+        // something went wrong when updating the number of password changes
+    }
   }
 
   
@@ -94,12 +133,13 @@
     try 
     {
         $usernameExists = false;
-        $query = "SELECT `username` FROM `students` WHERE `username` = '$username'";
+        $query = "SELECT `username` FROM `students` 
+                  WHERE `username` = '$username'";
         $stmt = $db->prepare($query);
         $stmt->execute([]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($username == null)
+        if ($username === false)
         {
           $usernameExists = false;
         }
@@ -112,9 +152,39 @@
     }
     catch (PDOException $e)
     {
-
+        // something went wrong when verifying the entered username
     }
+  }
 
+
+  function instructor_username_exists($username)
+  {
+    global $db;
+
+    try
+    {
+      $usernameExists = false;
+      $query = "SELECT `username` FROM `instructors` 
+                WHERE `username` = '$username'";
+      $stmt = $db->prepare($query);
+      $stmt->execute([]);
+      $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      if ($user === false)
+      {
+        $usernameExists = false;
+      }
+      else
+      {
+        $usernameExists = true;
+      }
+
+      return $usernameExists;
+    }
+    catch (PDOException $e)
+    {
+        // something went wrong when verifying the entered username
+    }
   }
 
 ?>
