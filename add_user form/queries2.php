@@ -1,6 +1,6 @@
 <?php
 
-function add_user($id, $username, $password, $last, $first, $email)
+function add_student($id, $username, $password, $last, $first, $email)
 {
     global $db;
 
@@ -9,6 +9,7 @@ function add_user($id, $username, $password, $last, $first, $email)
         $salt = substr(strtr(base64_encode(openssl_random_pseudo_bytes(22)), '+', '.'), 0, 22);
         $hash = crypt($password, '$2y$12$' . $salt);
 
+        $numPassChanges = 0;
         //var_dump($hash == crypt($password, $hash)); // To verify password
 
         $query = "INSERT INTO `students` VALUES (?,?,?,?,?,?,?,?,?)";
@@ -51,25 +52,6 @@ function add_instructor($id, $username, $password, $last, $first, $email)
         echo "<br/>Failed to add user";
     }
 
-}
-
-
-function retrieve_user($id)
-{
-    global $db;
-
-    try 
-    {
-        $query = "SELECT * FROM users WHERE user_id = $id";
-
-        $stmt = $db->prepare($query);
-        $stmt->execute([]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-    catch(PDOException $e)
-    {
-        alert("Failed to retrieve user");
-    }
 }
 
 
@@ -164,7 +146,7 @@ function student_username_exists($username)
       $stmt->execute([]);
       $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-      if ($username == false)
+      if ($username === false)
       {
         $usernameExists = false;
       }

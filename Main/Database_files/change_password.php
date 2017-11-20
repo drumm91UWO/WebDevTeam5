@@ -34,18 +34,18 @@ function change_password($username)
 
     if (!student_username_exists($username))
     {
-        readfile("changepassword.html"); // reload page
+        header('../changepassword.html'); // reload page
         echo '<br/>No such username exists in the database.';
 
     }
     else if  (!passwords_match($oldPassword, $oldPassHash))
     {        
-        readfile("changepassword.html"); // reload page
+        header('Location: ../changepassword.html'); // reload page
         echo '<br/>Old Password does not match your current password.';
     }
     else if ($newPassword != $newPassword2)
     {
-        readfile("changepassword.html"); // reload page
+        header('Location: ../changepassword.html'); // reload page
         echo '<br/>New passwords do not match.';
     }
     else
@@ -63,7 +63,7 @@ function change_password($username)
 
             update_student_num_password_changes($username);
 
-            readFile("changepassword.html");
+            header('Location: ../changepassword.html');
             echo '<br/>Password Changed!';
 
             return true;
@@ -93,18 +93,18 @@ function change_instructor_password($username)
     
         if (!instructor_username_exists($username))
         {
-            readfile("changepassword.html"); // reload page
+            header('Location: ../changepassword.html'); // reload page
             echo '<br/>No such username exists in the database.';
     
         }
         else if  (!passwords_match($oldPassword, $oldPassHash))
         {        
-            readfile("changepassword.html"); // reload page
+            header('Location: ../changepassword.html'); // reload page
             echo '<br/>Old Password does not match your current password.';
         }
         else if ($newPassword != $newPassword2)
         {
-            readfile("changepassword.html"); // reload page
+            header('Location: ../changepassword.html'); // reload page
             echo '<br/>New passwords do not match.';
         }
         else
@@ -122,7 +122,7 @@ function change_instructor_password($username)
     
                 update_instructor_num_password_changes($username);
     
-                readFile("changepassword.html");
+                header('Location: ../changepassword.html');
                 echo '<br/>Password Changed!';
     
                 return true;

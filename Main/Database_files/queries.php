@@ -107,7 +107,7 @@
       }
       catch (PDOException $e)
       {
-          // something went wrong when updating the number of password changes
+          echo 'something went wrong when updating the number of password changes';
       }
   }
 
@@ -126,7 +126,7 @@
     }
     catch (PDOException $e)
     {
-        // something went wrong when updating the number of password changes
+        echo 'something went wrong when updating the number of password changes';
     }
   }
 
@@ -157,7 +157,7 @@
     }
     catch (PDOException $e)
     {
-        // something went wrong when verifying the entered username
+        echo 'something went wrong when verifying the entered username';
     }
   }
 
@@ -188,7 +188,7 @@
     }
     catch (PDOException $e)
     {
-        // something went wrong when verifying the entered username
+        echo 'something went wrong when verifying the entered username';
     }
   }
 
