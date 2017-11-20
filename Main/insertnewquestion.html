@@ -10,15 +10,14 @@
 </head>
 <body>
     <h1>Insert New Question</h1>
-    <form action="instructorhome.html">
-        ID (if not auto generated): <input type="text" name="id"><br>
+    <form action="insertnewquestion.php" method="post">
+        ID (if not auto generated): <input type="number" name="id" min="1" max="10000"><br>
         Status:<br>
-        <input type="radio" name="status" value="active"> Active<br>
         <input type="radio" name="status" value="inactive"> Inactive<br>
         <input type="radio" name="status" value="draft" checked> Draft<br>
         Question statement: <input type="text" name="questionStatement"><br>
         Correct answer: <input type="text" name="correctAnswerIsExactly"><br>
-        Number of points: <input type="text" name="numberOfPoints"><br>
+        Number of points: <input type="number" name="numberOfPoints" min="1" max="100"><br>
         Description: <input type="text" name="description"><br>
         Keywords: <input type="text" name="keywords"><br>
         Section number: <input type="text" name="sectionNumber"><br>

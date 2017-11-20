@@ -3,18 +3,23 @@
   /* insert a new question into the database
      return true or output an error message, disconnect, and exit
    */
-  function insert_question($id, $question_statement, $correct_answer, $points, $description, $keywords,$section_number,$number_correct_answers) {
+  function insert_question($id, $status, $question_statement, $correct_answer, $points, $description, 
+	$keywords, $section_number, $number_correct_answers, $average_points_earned, $time_of_activation, 
+	$time_of_deactivation, $grader_code, $score_earned) {
 
   global $db;
 
     try {
-      $query = "INSERT INTO questions VALUES (?,?,?,?,?,?,?,?)";
+      $query = "INSERT INTO questions VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       $stmt = $db->prepare($query);
-      $stmt->execute([$id, $question_statement, $correct_answer, $points, $description, $keywords,$section_number,$number_correct_answers]);
+      $stmt->execute([$id, $status, $question_statement, $correct_answer, $points, $description, 
+		$keywords, $section_number, $number_correct_answers, $average_points_earned, $time_of_activation, 
+		$time_of_deactivation, $grader_code, $score_earned]);
       return true;
     } catch (PDOException $e) {
         dbDisconnect();
-        exit("Aborting: There was a database error when trying to insert the question.");
+        //exit("Aborting: There was a database error when trying to insert the question.");
+		exit($e);
     }
 
   }
