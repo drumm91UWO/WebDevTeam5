@@ -193,25 +193,66 @@
   }
 
 
-  function update_question_status($questionId) {
-    
+  function set_status_activated($questionid) {
     global $db;
-  
+    
+    try {
+       $query = "UPDATE `questions` 
+                 SET `status` = activated
+                 WHERE `question_id` = '$questionid'";
+        
+       $stmt = $db->prepare($query);
+       $stmt->execute();
+        
+       return  true;
+        
+      } catch (PDOException $e) {
+          db_disconnect();
+          exit("Aborting: There was a database error when activating the question");
+      }
+    
+      }
+      
+  function set_status_inactive($questionid) {
+     global $db;
+    
     try {
       $query = "UPDATE `questions` 
                 SET `status` = inactive
-                WHERE `question_id` = '$questionId'";
-    
+                WHERE `question_id` = '$questionid'";
+        
       $stmt = $db->prepare($query);
-      $stmt->execute([]);
-      return  $stmt->fetchAll(PDO::FETCH_ASSOC);
+      $stmt->execute();
+        
+       return  true;
+        
+      } catch (PDOException $e) {
+          db_disconnect();
+          exit("Aborting: There was a database error when deactivating the question");
+      }
     
-    } 
-    catch (PDOException $e) {
-        db_disconnect();
-        exit("Aborting: There was a database error when updating the status of the question");
-    }
-  
-    }
+      }
+
+  function set_status_draft($questionid)
+  {
+      global $db;
+
+       try 
+       {
+          $query = "UPDATE `questions`
+                    SET `status` = draft
+                    WHERE `question_id` = '$questionid'";
+
+          $stmt = $db->prepare($query);
+          $stmt->execute([]);
+
+          return true;
+        }
+        catch (PDOException $e)
+        {
+          db_disconnect();
+          exit("Aborting: There was a database error when setting question to status 'draft'");
+        }
+      }
 
 ?>
