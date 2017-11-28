@@ -6,16 +6,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $user = get_student_id($username);
+    $userid = $user[0]; 
 
     if(verify($username, $password))
     {
+        // Start session
+        session_start();
+        // Set session variables
+        $_SESSION['username'] = $username; 
+        $_SESSION['userid'] = $userid;
+
         header('Location: ../studenthome.html');
-        //readfile('../studenthome.html');
     }
     else
     {
         header('Location: ../login.html');
-       // readfile('../login.html');
         echo "<p>Username and password did not match any records in our database</p>";
     }
 }

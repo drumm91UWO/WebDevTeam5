@@ -104,6 +104,7 @@
                     WHERE `username` = '$username'";
           $stmt = $db->prepare($query);
           $stmt->execute([]);
+          return true;
       }
       catch (PDOException $e)
       {
@@ -123,6 +124,7 @@
                 WHERE `username` = '$username'";
       $stmt = $db->prepare($query);
       $stmt->execute([]);
+      return true;
     }
     catch (PDOException $e)
     {
@@ -205,7 +207,7 @@
        $stmt->execute();
         
        return  true;
-        
+
       } catch (PDOException $e) {
           db_disconnect();
           exit("Aborting: There was a database error when activating the question");
@@ -239,7 +241,7 @@
 
        try 
        {
-          $query = "UPDATE `questions`
+         d $query = "UPDATE `questions`
                     SET `status` = draft
                     WHERE `question_id` = '$questionid'";
 
@@ -252,6 +254,46 @@
         {
           db_disconnect();
           exit("Aborting: There was a database error when setting question to status 'draft'");
+        }
+      }
+
+
+      function insert_student_score($studentid, $questionid, $score)
+      {
+          global $db;
+
+          try
+          {
+            $query = "INSERT INTO scores VALUES (?,?,?)"; // Order in database is student_id, question_id, score
+            $stmt = $db->prepare($query);
+            $stmt-> execute([$studentid, $questionid, $score]);
+
+            return true;
+          }
+          catch (PDOException $e)
+          {
+            db_diconnect();
+            exit("Aborting: An error occur when inserting your score into the database.");
+          }
+      }
+
+
+      function get_student_id($username)
+      {
+        $db;
+
+        try 
+        {
+          $query "SELECT `id` FROM students
+                  WHERE `username` = '$username'";
+                  $stmt = $db-<prepare($query);
+                  $stmt=>execute([]);
+          return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $e)
+        {
+          db_diconnect();
+          exit("Aborting: could not retrienve student id.");
         }
       }
 
