@@ -1,4 +1,6 @@
 <?php
+// Start session
+session_start();
 
 require_once('initialize.php');
 
@@ -7,15 +9,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $username = $_POST['username'];
     $password = $_POST['password'];
     $user = get_student_id($username);
-    $userid = $user[0]; 
+    $userid = $user['id']; 
 
     if(verify($username, $password))
     {
-        // Start session
-        session_start();
         // Set session variables
-        $_SESSION['username'] = $username; 
-        $_SESSION['userid'] = $userid;
+        $_SESSION["username"] = $username; 
+        $_SESSION["id"] = $userid;
+
+        update_last_student_login($userid);
 
         header('Location: ../studenthome.html');
     }

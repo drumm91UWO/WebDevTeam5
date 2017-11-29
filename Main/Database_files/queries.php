@@ -128,6 +128,7 @@
     }
     catch (PDOException $e)
     {
+      dbDisconnect();
         echo 'something went wrong when updating the number of password changes';
     }
   }
@@ -159,6 +160,7 @@
     }
     catch (PDOException $e)
     {
+      dbDisconnect();
         echo 'something went wrong when verifying the entered username';
     }
   }
@@ -190,6 +192,7 @@
     }
     catch (PDOException $e)
     {
+      dbDiconnect();
         echo 'something went wrong when verifying the entered username';
     }
   }
@@ -209,7 +212,7 @@
        return  true;
 
       } catch (PDOException $e) {
-          db_disconnect();
+          dbDisconnect();
           exit("Aborting: There was a database error when activating the question");
       }
     
@@ -229,7 +232,7 @@
        return  true;
         
       } catch (PDOException $e) {
-          db_disconnect();
+          dbDisconnect();
           exit("Aborting: There was a database error when deactivating the question");
       }
     
@@ -241,7 +244,7 @@
 
        try 
        {
-         d $query = "UPDATE `questions`
+          $query = "UPDATE questions
                     SET `status` = draft
                     WHERE `question_id` = '$questionid'";
 
@@ -252,7 +255,7 @@
         }
         catch (PDOException $e)
         {
-          db_disconnect();
+          dbDisconnect();
           exit("Aborting: There was a database error when setting question to status 'draft'");
         }
       }
@@ -272,28 +275,76 @@
           }
           catch (PDOException $e)
           {
-            db_diconnect();
+            dbDisconnect();
             exit("Aborting: An error occur when inserting your score into the database.");
           }
       }
 
 
+      function update_last_student_login($userid)
+      {
+        global $db;
+
+        try
+        {
+          $date = date("Y-m-d H:i:s");
+
+          $query = "UPDATE students
+                    SET `last_login` = '$date'
+                    WHERE `id` = $userid";
+          $stmt = $db->prepare($query);
+          $stmt->execute([]);
+
+          return true;
+        }
+        catch (PDOException $e)
+        {
+            dbDisconnect();
+            exit("Aborting: An error occurred logging the login time.");
+        }
+      }
+
+
+      function update_last_student_logout($id)
+      {
+        global $db;
+
+        try
+        {
+          $date = date("Y-m-d H:i:s");
+
+          $query = "UPDATE students
+                    SET `last_logout` = '$date'
+                    WHERE `id` = $id";
+          $stmt = $db->prepare($query);
+          $stmt->execute([]);
+
+          return true;
+        }
+        catch (PDOException $e)
+        {
+            dbDisconnect();
+            exit("Aborting: An error occurred logging the logout time.");
+        }
+      }
+
+
       function get_student_id($username)
       {
-        $db;
+        global $db;
 
         try 
         {
-          $query "SELECT `id` FROM students
+          $query = "SELECT `id` FROM students
                   WHERE `username` = '$username'";
-                  $stmt = $db-<prepare($query);
-                  $stmt=>execute([]);
+                  $stmt = $db->prepare($query);
+                  $stmt->execute([]);
           return $stmt->fetch(PDO::FETCH_ASSOC);
         }
         catch(PDOException $e)
         {
-          db_diconnect();
-          exit("Aborting: could not retrienve student id.");
+          dbDisconnect();
+          exit("Aborting: could not retrieve student id.");
         }
       }
 
