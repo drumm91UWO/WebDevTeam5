@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
+{
+    header("Location: login.html");
+}
+?>
+
 <!DOCTYPE html>
 <html lang=en>
 <head>

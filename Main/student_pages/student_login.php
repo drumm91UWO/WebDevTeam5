@@ -2,7 +2,7 @@
 // Start session
 session_start();
 
-require_once('initialize.php');
+require_once('../database_files/initialize.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
@@ -14,16 +14,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     if(verify($username, $password))
     {
         // Set session variables
-        $_SESSION["username"] = $username; 
-        $_SESSION["id"] = $userid;
+        $_SESSION['username'] = $username; 
+        $_SESSION['id'] = $userid;
+        $_SESSION['acct_type'] = "student";
 
         update_last_student_login($userid);
 
-        header('Location: ../studenthome.html');
+        header('Location: studenthome.php');
     }
     else
     {
-        header('Location: ../login.html');
+        header('Location: login.html');
         echo "<p>Username and password did not match any records in our database</p>";
     }
 }

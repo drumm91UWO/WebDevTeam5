@@ -339,6 +339,53 @@
         }
       }
 
+      function update_last_instructor_login($id)
+      {
+        global $db;
+
+        try
+        {
+          $date = date("Y-m-d H:i:s");
+
+          $query = "UPDATE instructors
+                   SET `last_login` = '$date'
+                   WHERE `id` = $id";
+          $stmt = $db->prepare($query);
+          $stmt->execute([]);
+
+          return true;
+        }
+        catch (PDOException $e)
+        {
+          dbDisconnect();
+          exit("Aborting: An error occurred logging the login time.");
+        }
+      }
+
+
+      function update_last_instructor_logout($id)
+      {
+        global $db;
+
+        try
+        {
+          $date = date("Y-m-d H:i:s");
+
+          $query = "UPDATE instructors
+                   SET `last_logout` = '$date'
+                   WHERE `id` = $id";
+          $stmt = $db->prepare($query);
+          $stmt->execute([]);
+
+          return true;
+        }
+        catch (PDOException $e)
+        {
+          dbDisconnect();
+          exit("Aborting: An error occurred logging the logout time.");
+        }
+      }
+
 
       function get_student_id($username)
       {
@@ -347,6 +394,26 @@
         try 
         {
           $query = "SELECT `id` FROM students
+                  WHERE `username` = '$username'";
+                  $stmt = $db->prepare($query);
+                  $stmt->execute([]);
+          return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $e)
+        {
+          dbDisconnect();
+          exit("Aborting: could not retrieve student id.");
+        }
+      }
+
+
+      function get_instructor_id($username)
+      {
+        global $db;
+
+        try 
+        {
+          $query = "SELECT `id` FROM instructors
                   WHERE `username` = '$username'";
                   $stmt = $db->prepare($query);
                   $stmt->execute([]);

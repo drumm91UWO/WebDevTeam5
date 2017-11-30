@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿<?php
+session_start();
+if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
+{
+    header("Location: instructorlogin.html");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
 <html lang=en>
 <head>
     <link href="styles.css" rel="stylesheet" type="text/css">
@@ -18,6 +27,6 @@
     <a href="insertnewquestion.html">Insert new question</a><br>
     <a href="editquestion.html">Edit question</a><br>
     <a href="deletequestion.html">Delete question</a><br>
-    <a href="login.html">Logout</a>
+    <a href="instructor_logout.php">Logout</a>
 </body>
 </html>

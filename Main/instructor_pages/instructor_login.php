@@ -1,22 +1,32 @@
 <?php
+//start session
+session_start();
 
-require_once('initialize.php');
+require_once('../database_files/initialize.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $user = get_instructor_id($username);
+    $userid = $user['id'];
 
     if(verify($username, $password))
     {
-        header('Location: ../instructorhome.html');
+        // Set session variables
+        $_SESSION['username'] = $username; 
+        $_SESSION['id'] = $userid;
+        $_SESSION['acct_type'] = "instructor";
+
+        update_last_instructor_login($userid);
+
+        header('Location: instructorhome.php');
         exit();
     }
     else
     {
-        header('Location: ../instructorlogin.html');
+        header('Location: instructorlogin.html');
         exit();
-        echo "<p>Username and password did not match any records in our database</p>";
     }
 }
 
