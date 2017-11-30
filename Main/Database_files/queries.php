@@ -24,12 +24,6 @@
 
   }
 
-  /*  return a PDOstatement's result set containing the question with the
-      given ID (this will be an empty result set, with no error, if there is no
-      question with the given ID in the database)
-      output an error message, disconnect, and exit in case something goes
-      wrong
-   */
   function retrieve_question($keywords,$description,$section_number,$points,$score_earned) {
   global $db;
 
@@ -52,6 +46,23 @@
 
   }
 
+  function retrieve_all_not_activated_questions() {
+  global $db;
+
+  try {
+    $query = "SELECT * FROM questions WHERE ( status = 'not_activated') ";
+	
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+	
+    return  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	
+  } catch (PDOException $e) {
+      dbDisconnect();
+      exit("Aborting: There was a database error when trying to retrieve the question.");
+  }
+
+  }
 
   function retrieve_student_password($username)
   {

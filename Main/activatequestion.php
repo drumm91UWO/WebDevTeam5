@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<?php error_reporting ( E_ALL | E_STRICT ); ?>
+<!DOCTYPE html>
 <html lang=en>
 <head>
     <link href="styles.css" rel="stylesheet" type="text/css">
@@ -14,7 +15,14 @@
     <h3>With Insights</h3>
     <p>
         <select>
-            <option value="Q1">Q1: Section 1.1.3: Internet and Transmission Control Protocol</option>
+            <?php
+		        require_once('Database_files/initialize.php');
+		        $questions = retrieve_all_not_activated_questions();
+                $numberOfQuestions = count($questions);
+                for($x = 0; $x < $numberOfQuestions; $x++){
+                    ?><option value=<?php echo $questions[$x]['id']; ?>><?php echo $questions[$x]['description']; ?></option><?php
+                }
+            ?>
         </select>
     </p>
     <p>
