@@ -1,10 +1,28 @@
-function activateQuestion() {
+function activateQuestion(id) {
     var buttonElement = document.getElementById("button");
     buttonElement.disabled = true;
     var buttonElement = document.getElementById("button2");
     buttonElement.disabled = false;
-    displayAnswers();
-    startTimer();
+    attemptToActivateQuestion(id);
+}
+function attemptToActivateQuestion(id) {
+    $.ajax({
+        type: 'POST',
+        data: {questionId: id},
+        url: 'Database_files/attempttoactivatequestion.php',
+        success: function (data) {
+            //alert(data);
+            displayAnswers();
+            startTimer();
+            updateSelector();
+        },
+        error: function (xhr) {
+            alert("error");
+        }
+    });
+}
+function updateSelector() {
+
 }
 function deactivateQuestion() {
     var buttonElement = document.getElementById("button2");
@@ -30,7 +48,8 @@ function incrementTime() {
     }
 }
 function displayAnswers() {
-    document.getElementById("display").innerHTML = "No data to display at this time.";
+    document.getElementById("display").innerHTML = "At this time, there is no data to display for " + 
+        $("#selector option:selected").text() + ".";
 }
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));

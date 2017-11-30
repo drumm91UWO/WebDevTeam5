@@ -9,12 +9,13 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <script type="text/javascript" src="activatequestion.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <h1>Activate Question</h1>
     <h3>With Insights</h3>
     <p>
-        <select>
+        <select id="selector">
             <?php
 		        require_once('Database_files/initialize.php');
 		        $questions = retrieve_all_not_activated_questions();
@@ -26,7 +27,7 @@
         </select>
     </p>
     <p>
-        <button id="button" onclick="activateQuestion()">Activate Question</button>
+        <button id="button" onclick="activateQuestion(document.getElementById('selector').value)">Activate Question</button> This will deactivate all questions before activating the selected question.<br>
         <button id="button2" onclick="deactivateQuestion()" disabled="true">Deactivate Question</button>
     </p>
     <div id="timer">

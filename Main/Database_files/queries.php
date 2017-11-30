@@ -47,21 +47,35 @@
   }
 
   function retrieve_all_not_activated_questions() {
-  global $db;
-
-  try {
-    $query = "SELECT * FROM questions WHERE ( status = 'not_activated') ";
+	  global $db;
+	  try {
+		$query = "SELECT * FROM questions WHERE ( status = 'not_activated') ";
 	
-    $stmt = $db->prepare($query);
-    $stmt->execute();
+		$stmt = $db->prepare($query);
+		$stmt->execute();
 	
-    return  $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return  $stmt->fetchAll(PDO::FETCH_ASSOC);
 	
-  } catch (PDOException $e) {
-      dbDisconnect();
-      exit("Aborting: There was a database error when trying to retrieve the question.");
+	  } catch (PDOException $e) {
+		  dbDisconnect();
+		  exit("Aborting: There was a database error when trying to retrieve the questions.");
+	  }
   }
 
+  function retrieve_all_activated_questions() {
+	  global $db;
+	  try {
+		$query = "SELECT * FROM questions WHERE ( status = 'activated') ";
+	
+		$stmt = $db->prepare($query);
+		$stmt->execute();
+	
+		return  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	
+	  } catch (PDOException $e) {
+		  dbDisconnect();
+		  exit("Aborting: There was a database error when trying to retrieve the questions.");
+	  }
   }
 
   function retrieve_student_password($username)
@@ -208,46 +222,31 @@
     }
   }
 
-
   function set_status_activated($questionid) {
     global $db;
-    
     try {
-       $query = "UPDATE `questions` 
-                 SET `status` = activated
-                 WHERE `question_id` = '$questionid'";
-        
+       $query = "UPDATE questions SET status = 'activated' WHERE id = $questionid";
        $stmt = $db->prepare($query);
        $stmt->execute();
-        
        return  true;
+    } catch (PDOException $e) {
+        dbDisconnect();
+        exit("Aborting: There was a database error when activating the question");
+    }
+  }
 
-      } catch (PDOException $e) {
-          dbDisconnect();
-          exit("Aborting: There was a database error when activating the question");
-      }
-    
-      }
-      
-  function set_status_inactive($questionid) {
-     global $db;
-    
+  function deactivate_all_activated_questions() {
+    global $db;
     try {
-      $query = "UPDATE `questions` 
-                SET `status` = inactive
-                WHERE `question_id` = '$questionid'";
-        
-      $stmt = $db->prepare($query);
-      $stmt->execute();
-        
+       $query = "UPDATE questions SET status = 'not_activated' WHERE status = 'activated'";
+       $stmt = $db->prepare($query);
+       $stmt->execute();
        return  true;
-        
-      } catch (PDOException $e) {
-          dbDisconnect();
-          exit("Aborting: There was a database error when deactivating the question");
-      }
-    
-      }
+    } catch (PDOException $e) {
+        dbDisconnect();
+        exit("Aborting: There was a database error when activating the question");
+    }
+  }
 
   function set_status_draft($questionid)
   {
