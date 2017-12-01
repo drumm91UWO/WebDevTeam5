@@ -34,7 +34,7 @@ function updateSelector() {
                 .end()
                 ;
             for (var i = 0; i < questions.length; i++){
-                alert("trying to add question " + questions[i].description);
+                //alert("trying to add question " + questions[i].description);
                 selector.append('<option value="' + questions[i].id + '">' + questions[i].description + '</option>');
             }
         },
