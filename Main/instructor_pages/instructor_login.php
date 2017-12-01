@@ -48,11 +48,6 @@ function verify($user, $pass)
          $isValid = false;
      }
 
-    else
-    {
-        $isValid = false;
-    }
-
     return $isValid;
 }
 
