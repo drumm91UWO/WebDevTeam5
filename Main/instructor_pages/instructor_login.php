@@ -72,7 +72,7 @@ function verify_password($user, $enteredPass)
     $isMatch = false;
     $pass = retrieve_instructor_password($user);
     $pass = $pass['password'];
-    $salt = retrieve_student_salt($user);
+    $salt = retrieve_instructor_salt($user);
 
     // Hash entered password
     $enteredPassHash = crypt($enteredPass, '$2y$12$' . $salt);
