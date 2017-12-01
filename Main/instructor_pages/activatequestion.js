@@ -107,8 +107,8 @@ function displayAnswers() {
     document.getElementById("display").innerHTML = "At this time, there is no data to display for " + 
         $("#selector option:selected").text() + ".";
     */
-    sleep(1000);//sleep for 1 second
-    displayAnswers();
+    //sleep(1000);//sleep for 1 second
+    //displayAnswers();
 }
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
