@@ -87,11 +87,16 @@ function displayAnswers() {
         url: '../Database_files/getscoresfordisplay.php',
         data: {questionId: id},
         success: function (result) {
-            //result should be a JSON object of scores
-            //this is where you use canvas
-            //use canvas to genereate an html bar graph with this data
-            //set the inner html of display div to the bar graph
-            //code here will only run if successful
+            alert(result);
+            var scores = JSON.parse(result);
+            //alert(scores[0]["score"]);//you're going to want to actually have some results for this to work
+            if(scores.length > 0){
+                //result should be a JSON object of scores
+                //this is where you use canvas
+                //use canvas to genereate an html bar graph with this data
+                //set the inner html of display div to the bar graph
+                //code here will only run if successful
+            }
         },
     });
     */
