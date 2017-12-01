@@ -10,7 +10,7 @@ function add_student($id, $username, $password, $last, $first, $email)
         $hash = crypt($password, '$2y$12$' . $salt);
 
         $numPassChanges = 0;
-        //var_dump($hash == crypt($password, $hash)); // To verify password
+        insert_student_salt($salt);
 
         $query = "INSERT INTO `students` VALUES (?,?,?,?,?,?,?,?,?)";
         $stmt = $db->prepare($query);
@@ -27,6 +27,23 @@ function add_student($id, $username, $password, $last, $first, $email)
 
 }
 
+function insert_student_salt($salt)
+{
+    global $db;
+
+    try
+    {
+        $query = "INSERT INTO students (salt) VALUES(?)";
+        $stmt = $db->prepare($query);
+        $stmt->execute([$salt]);
+        return true;
+    }
+    catch (PDOException $e)
+    {
+
+    }
+}
+
 
 function add_instructor($id, $username, $password, $last, $first, $email)
 {
@@ -36,13 +53,13 @@ function add_instructor($id, $username, $password, $last, $first, $email)
     {
         $salt = substr(strtr(base64_encode(openssl_random_pseudo_bytes(22)), '+', '.'), 0, 22);
         $hash = crypt($password, '$2y$12$' . $salt);
+        
+        $numPassChanges = 0;
 
-        //var_dump($hash == crypt($password, $hash)); // To verify password
-
-        $query = "INSERT INTO `instructors` VALUES (?,?,?,?,?,?,?,?,?)";
+        $query = "INSERT INTO `instructors` VALUES (?,?,?,?,?,?,?,?,?,?)";
         $stmt = $db->prepare($query);
         $stmt->execute([$id, $username, $first, $last, $email, $hash, 
-                        $numPassChanges, null, null]);
+                        $numPassChanges, null, null, $salt]);
         echo "User added successfully!";
         return true;
     }
