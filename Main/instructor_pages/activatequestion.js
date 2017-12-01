@@ -76,8 +76,31 @@ function incrementTime() {
     }
 }
 function displayAnswers() {
+    //get current answer data to $("#selector option:selected").value() <--question id
+        //note: what that is going to look like is the number 15
+        //note: this will be an ajax query. ajax queries use php. You would probably use a new php file.
+        //note: use updateSelector() method for inspiration
+    /*
+    var id = $("#selector option:selected").value()
+    $.ajax({
+        type: 'POST',
+        url: '../Database_files/getscoresfordisplay.php',
+        data: {questionId: id},
+        success: function (result) {
+            //result should be a JSON object of scores
+            //this is where you use canvas
+            //use canvas to genereate an html bar graph with this data
+            //set the inner html of display div to the bar graph
+            //code here will only run if successful
+        },
+    });
+    */
+    //don't really want to make changes here
+    //code here will run if successful or not
     document.getElementById("display").innerHTML = "At this time, there is no data to display for " + 
         $("#selector option:selected").text() + ".";
+    sleep(1000);//sleep for 1 second
+    displayAnswers();
 }
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
