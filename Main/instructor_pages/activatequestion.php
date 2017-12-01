@@ -44,6 +44,10 @@ error_reporting ( E_ALL | E_STRICT );
     </div>
     <div id="display">
         Data will be displayed here.
+	   
+	    <canvas id="barchart">
+	    </canvas>
+	  
         <!--Display bar graph here-->
     </div>
     <a href="instructorhome.html">Home</a><br>
