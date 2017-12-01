@@ -46,6 +46,22 @@
 
   }
 
+function get_scores_for_display($id) {
+	  global $db;
+	  try {
+		$query = "SELECT * FROM scores WHERE ( question_id = " + $id + ") ";
+	
+		$stmt = $db->prepare($query);
+		$stmt->execute();
+	
+		return  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	
+	  } catch (PDOException $e) {
+		  dbDisconnect();
+		  exit("Aborting: There was a database error when trying to retrieve the questions.");
+	  }
+  }
+
   function retrieve_all_inactive_questions() {
 	  global $db;
 	  try {
