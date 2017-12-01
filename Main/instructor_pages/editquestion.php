@@ -1,10 +1,12 @@
 ﻿<?php
+/*
 session_start();
 if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
 {
     header("Location: instructorlogin.html");
     exit();
 }
+*/
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +29,6 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
     
     <form action="edit_question.php" method="post">
         Status:<br>
-        <input type="radio" name="status" value="active"> Active<br>
         <input type="radio" name="status" value="inactive"> Inactive<br>
         <input type="radio" name="status" value="draft" checked> Draft<br>
         Question statement: <input type="text" name="questionStatement"><br>
