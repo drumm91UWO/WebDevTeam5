@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
   $id = $_POST['questionId'];
     if($id){
-      echo json_encode(get_scores_for_display());
+      echo json_encode(get_scores_for_display($id));
     }
 }
 ?>
