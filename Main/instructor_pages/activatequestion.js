@@ -9,7 +9,7 @@ function attemptToActivateQuestion(id) {
     $.ajax({
         type: 'POST',
         data: {questionId: id},
-        url: 'Database_files/attempttoactivatequestion.php',
+        url: '../Database_files/attempttoactivatequestion.php',
         success: function (data) {
             //alert(data);
             displayAnswers();
@@ -22,7 +22,23 @@ function attemptToActivateQuestion(id) {
     });
 }
 function updateSelector() {
-
+    $.ajax({
+        type: 'POST',
+        url: '../Database_files/updateselector.php',
+        data: {},
+        success: function (result) {
+            var questions = JSON.parse(result);
+            var selector = $('#selector')
+                .find('option')
+                .remove()
+                .end()
+                ;
+            for (var i = 0; i < questions.length; i++){
+                alert("trying to add question " + questions[i].description);
+                selector.append('<option value="' + questions[i].id + '">' + questions[i].description + '</option>');
+            }
+        },
+    });
 }
 function deactivateQuestion() {
     var buttonElement = document.getElementById("button2");
@@ -30,6 +46,18 @@ function deactivateQuestion() {
     var buttonElement = document.getElementById("button");
     buttonElement.disabled = false;
     document.getElementById("timer").innerHTML += " Time ended";
+    $.ajax({
+        type: 'POST',
+        data: {},
+        url: '../Database_files/attempttoactivatequestion.php',
+        success: function (data) {
+            //alert(data);
+        },
+        error: function (xhr) {
+            alert("error");
+        }
+    });
+    updateSelector();
 }
 async function startTimer() {
     document.getElementById("timer").innerHTML = "0";

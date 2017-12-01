@@ -49,7 +49,7 @@
   function retrieve_all_not_activated_questions() {
 	  global $db;
 	  try {
-		$query = "SELECT * FROM questions WHERE ( status = 'not_activated') ";
+		$query = "SELECT * FROM questions WHERE ( status = 'inactive') ";
 	
 		$stmt = $db->prepare($query);
 		$stmt->execute();
@@ -225,7 +225,7 @@
   function set_status_activated($questionid) {
     global $db;
     try {
-       $query = "UPDATE questions SET status = 'activated' WHERE id = $questionid";
+       $query = "UPDATE questions SET status = 'activated', time_of_activation = now() WHERE id = $questionid";
        $stmt = $db->prepare($query);
        $stmt->execute();
        return  true;
@@ -238,7 +238,7 @@
   function deactivate_all_activated_questions() {
     global $db;
     try {
-       $query = "UPDATE questions SET status = 'not_activated' WHERE status = 'activated'";
+       $query = "UPDATE questions SET status = 'inactive', time_of_deactivation = now() WHERE status = 'activated'";
        $stmt = $db->prepare($query);
        $stmt->execute();
        return  true;

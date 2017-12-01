@@ -1,11 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\add_user form",
-    "\\images",
     "\\Main",
     "\\Main\\Database_files"
   ],
-  "SelectedNode": "\\images",
+  "SelectedNode": "\\Main\\Database_files\\student_login.php",
   "PreviewInSolutionExplorer": false
 }

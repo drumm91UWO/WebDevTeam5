@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang=en>
 <head>
-    <link href="styles.css" rel="stylesheet" type="text/css">
+    <link href="../styles.css" rel="stylesheet" type="text/css">
     <title></title>
     <meta charset="utf-8" />
     <meta name="author" content="Michael Drum" />
@@ -17,7 +17,7 @@
     <p>
         <select id="selector">
             <?php
-		        require_once('Database_files/initialize.php');
+		        require_once('../Database_files/initialize.php');
 		        $questions = retrieve_all_not_activated_questions();
                 $numberOfQuestions = count($questions);
                 for($x = 0; $x < $numberOfQuestions; $x++){
