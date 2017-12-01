@@ -27,7 +27,7 @@ error_reporting ( E_ALL | E_STRICT );
         <select id="selector">
             <?php
 		        require_once('../database_files/initialize.php');
-		        $questions = retrieve_all_not_activated_questions();
+		        $questions = retrieve_all_inactive_questions();
                 $numberOfQuestions = count($questions);
                 for($x = 0; $x < $numberOfQuestions; $x++){
                     ?><option value=<?php echo $questions[$x]['id']; ?>><?php echo $questions[$x]['description']; ?></option><?php
