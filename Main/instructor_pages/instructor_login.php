@@ -2,7 +2,7 @@
 //start session
 session_start();
 
-require_once('../database_files/initialize.php');
+require_once('../Database_files/initialize.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {

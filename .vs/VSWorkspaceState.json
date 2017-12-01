@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Main",
-    "\\Main\\Database_files"
+    "\\Main\\Database_files",
+    "\\Main\\instructor_pages"
   ],
-  "SelectedNode": "\\Main\\Database_files\\student_login.php",
+  "SelectedNode": "\\Main\\instructor_pages\\instructor_login.php",
   "PreviewInSolutionExplorer": false
 }
