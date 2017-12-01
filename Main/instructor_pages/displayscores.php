@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
+{
+    header("Location: instructorlogin.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -14,6 +23,6 @@
         Scores will display here.
     </p>
     <a href="instructorhome.html">Home</a><br>
-    <a href="login.html">Logout</a>
+    <a href="instructorlogin.html">Logout</a>
 </body>
 </html>

@@ -1,4 +1,13 @@
-﻿<?php error_reporting ( E_ALL | E_STRICT ); ?>
+﻿<?php 
+session_start();
+if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
+{
+    header("Location: instructorlogin.html");
+    exit();
+}
+error_reporting ( E_ALL | E_STRICT ); 
+?>
+
 <!DOCTYPE html>
 <html lang=en>
 <head>

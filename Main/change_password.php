@@ -1,6 +1,6 @@
 <?php
 
-require_once('initialize.php');
+require_once('database_files/initialize.php');
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
@@ -8,13 +8,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $role = $_POST['role'];
     $username = $_POST['username'];
 
-    if ($role === "radiostudent")
+    if ($role === "instructor")
     {
-        change_password($username);
+        change_instructor_password($username);
     }
     else
     {
-        change_instructor_password($username);
+        change_password($username);
     }
 }
 
@@ -35,18 +35,15 @@ function change_password($username)
     if (!student_username_exists($username))
     {
         header('../changepassword.html'); // reload page
-        echo '<br/>No such username exists in the database.';
 
     }
     else if  (!passwords_match($oldPassword, $oldPassHash))
     {        
         header('Location: ../changepassword.html'); // reload page
-        echo '<br/>Old Password does not match your current password.';
     }
     else if ($newPassword != $newPassword2)
     {
         header('Location: ../changepassword.html'); // reload page
-        echo '<br/>New passwords do not match.';
     }
     else
     {
@@ -64,7 +61,6 @@ function change_password($username)
             update_student_num_password_changes($username);
 
             header('Location: ../changepassword.html');
-            echo '<br/>Password Changed!';
 
             return true;
         }
@@ -93,19 +89,16 @@ function change_instructor_password($username)
     
         if (!instructor_username_exists($username))
         {
-            header('Location: ../changepassword.html'); // reload page
-            echo '<br/>No such username exists in the database.';
+            header('Location: changepassword.html'); // reload page
     
         }
         else if  (!passwords_match($oldPassword, $oldPassHash))
         {        
-            header('Location: ../changepassword.html'); // reload page
-            echo '<br/>Old Password does not match your current password.';
+            header('Location: changepassword.html'); // reload page
         }
         else if ($newPassword != $newPassword2)
         {
-            header('Location: ../changepassword.html'); // reload page
-            echo '<br/>New passwords do not match.';
+            header('Location: changepassword.html'); // reload page
         }
         else
         {
@@ -122,8 +115,7 @@ function change_instructor_password($username)
     
                 update_instructor_num_password_changes($username);
     
-                header('Location: ../changepassword.html');
-                echo '<br/>Password Changed!';
+                header('Location: changepassword.html');
     
                 return true;
             }

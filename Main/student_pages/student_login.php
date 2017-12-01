@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     else
     {
         header('Location: login.html');
-        echo "<p>Username and password did not match any records in our database</p>";
     }
 }
 

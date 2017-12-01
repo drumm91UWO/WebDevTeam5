@@ -46,7 +46,7 @@
 
   }
 
-  function retrieve_all_not_activated_questions() {
+  function retrieve_all_inactive_questions() {
 	  global $db;
 	  try {
 		$query = "SELECT * FROM questions WHERE ( status = 'inactive') ";
@@ -78,6 +78,7 @@
 	  }
   }
 
+
   function retrieve_student_password($username)
   {
       global $db;
@@ -87,7 +88,7 @@
         $query = "SELECT password FROM students WHERE username = '$username'";
 
         $stmt = $db->prepare($query);
-        $stmt->execute([]);
+        $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC); // returns the student's hashed password
       }
       catch (PDOException $e)
@@ -107,7 +108,7 @@
         $query = "SELECT password FROM instructors WHERE username = '$username'";
 
         $stmt = $db->prepare($query);
-        $stmt->execute([]);
+        $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC); // returns the instructor's hashed password
     }
     catch (PDOException $e)
@@ -128,7 +129,7 @@
                     SET `number_password_changes` = number_password_changes + 1
                     WHERE `username` = '$username'";
           $stmt = $db->prepare($query);
-          $stmt->execute([]);
+          $stmt->execute();
           return true;
       }
       catch (PDOException $e)
@@ -144,17 +145,17 @@
 
     try
     {
-      $query = "UPDATE `instructors`
-                SET `num_password_changes` = number_password_changes + 1
-                WHERE `username` = '$username'";
+      $query = "UPDATE instructors
+                SET number_password_changes = number_password_changes + 1
+                WHERE username = '$username'";
       $stmt = $db->prepare($query);
-      $stmt->execute([]);
+      $stmt->execute();
       return true;
     }
     catch (PDOException $e)
     {
       dbDisconnect();
-        echo 'something went wrong when updating the number of password changes';
+      echo 'something went wrong when updating the number of password changes<br/>';
     }
   }
 
@@ -166,10 +167,10 @@
     try 
     {
         $usernameExists = false;
-        $query = "SELECT `username` FROM `students` 
-                  WHERE `username` = '$username'";
+        $query = "SELECT username FROM students
+                  WHERE username = '$username'";
         $stmt = $db->prepare($query);
-        $stmt->execute([]);
+        $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($username === false)
@@ -201,7 +202,7 @@
       $query = "SELECT `username` FROM `instructors` 
                 WHERE `username` = '$username'";
       $stmt = $db->prepare($query);
-      $stmt->execute([]);
+      $stmt->execute();
       $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
       if ($user === false)
@@ -235,14 +236,16 @@
     }
   }
 
-  function deactivate_all_activated_questions() {
+  function deactivate_all_activated_questions() 
+  {
     global $db;
     try {
        $query = "UPDATE questions SET status = 'inactive', time_of_deactivation = now() WHERE status = 'activated'";
        $stmt = $db->prepare($query);
        $stmt->execute();
        return  true;
-    } catch (PDOException $e) {
+    } catch (PDOException $e) 
+    {
         dbDisconnect();
         exit("Aborting: There was a database error when activating the question");
     }
@@ -259,7 +262,7 @@
                     WHERE `question_id` = '$questionid'";
 
           $stmt = $db->prepare($query);
-          $stmt->execute([]);
+          $stmt->execute();
 
           return true;
         }
@@ -277,7 +280,7 @@
 
           try
           {
-            $query = "INSERT INTO scores VALUES (?,?,?)"; // Order in database is student_id, question_id, score
+            $query = "INSERT INTO scores VALUES (?,?,?)"; 
             $stmt = $db->prepare($query);
             $stmt-> execute([$studentid, $questionid, $score]);
 
@@ -303,7 +306,7 @@
                     SET `last_login` = '$date'
                     WHERE `id` = $userid";
           $stmt = $db->prepare($query);
-          $stmt->execute([]);
+          $stmt->execute();
 
           return true;
         }
@@ -327,7 +330,7 @@
                     SET `last_logout` = '$date'
                     WHERE `id` = $id";
           $stmt = $db->prepare($query);
-          $stmt->execute([]);
+          $stmt->execute();
 
           return true;
         }
@@ -350,7 +353,7 @@
                    SET `last_login` = '$date'
                    WHERE `id` = $id";
           $stmt = $db->prepare($query);
-          $stmt->execute([]);
+          $stmt->execute();
 
           return true;
         }
@@ -374,7 +377,7 @@
                    SET `last_logout` = '$date'
                    WHERE `id` = $id";
           $stmt = $db->prepare($query);
-          $stmt->execute([]);
+          $stmt->execute();
 
           return true;
         }
@@ -392,10 +395,10 @@
 
         try 
         {
-          $query = "SELECT `id` FROM students
-                  WHERE `username` = '$username'";
+          $query = "SELECT id FROM students
+                  WHERE username = '$username'";
                   $stmt = $db->prepare($query);
-                  $stmt->execute([]);
+                  $stmt->execute();
           return $stmt->fetch(PDO::FETCH_ASSOC);
         }
         catch(PDOException $e)
@@ -414,8 +417,8 @@
         {
           $query = "SELECT `id` FROM instructors
                   WHERE `username` = '$username'";
-                  $stmt = $db->prepare($query);
-                  $stmt->execute([]);
+          $stmt = $db->prepare($query);
+          $stmt->execute([]);
           return $stmt->fetch(PDO::FETCH_ASSOC);
         }
         catch(PDOException $e)
