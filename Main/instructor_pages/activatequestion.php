@@ -1,4 +1,13 @@
-﻿<?php error_reporting ( E_ALL | E_STRICT ); ?>
+﻿<?php 
+session_start();
+if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
+{
+    header("Location: instructorlogin.html");
+    exit();
+}
+error_reporting ( E_ALL | E_STRICT ); 
+?>
+
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -17,7 +26,7 @@
     <p>
         <select id="selector">
             <?php
-		        require_once('Database_files/initialize.php');
+		        require_once('../database_files/initialize.php');
 		        $questions = retrieve_all_not_activated_questions();
                 $numberOfQuestions = count($questions);
                 for($x = 0; $x < $numberOfQuestions; $x++){

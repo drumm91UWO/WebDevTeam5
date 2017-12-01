@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿<?php
+session_start();
+if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
+{
+    header("Location: instructorlogin.html");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
 <html lang=en>
 <head>
     <link href="styles.css" rel="stylesheet" type="text/css">
@@ -16,7 +25,7 @@
         </select>
     </p>
     
-    <form action="instructorhome.html">
+    <form action="edit_question.php" method="post">
         Status:<br>
         <input type="radio" name="status" value="active"> Active<br>
         <input type="radio" name="status" value="inactive"> Inactive<br>
@@ -30,7 +39,7 @@
         PHP Grader Code: <input type="text" name="phpGraderCode"><br>
         <input type="submit">
     </form>
-    <a href="instructorhome.html">Home</a><br>
+    <a href="instructorhome.php">Home</a><br>
     <a href="login.html">Logout</a>
 </body>
 </html>
