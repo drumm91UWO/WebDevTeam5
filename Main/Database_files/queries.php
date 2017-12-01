@@ -114,6 +114,23 @@ function get_scores_for_display($id) {
       }
   }
 
+  function retrieve_student_salt($username)
+  {
+  	  global $db;
+
+	  try
+	  {
+		$query = "SELECT salt FROM students WHERE username = '?'";
+		$stmt = $db->prepare($query);
+		$stmt->execute([$username]);
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	  }
+	  catch (PDOException $e)
+	  {
+		echo 'no salt';
+	  }
+  }
+
 
   function retrieve_instructor_password($username)
   {
@@ -133,6 +150,24 @@ function get_scores_for_display($id) {
       exit("There was a database error when trying to retrieve your password.");
     }
   }
+
+  function retrieve_instructor_salt($username)
+  {
+  	  global $db;
+
+	  try
+	  {
+		$query = "SELECT salt FROM instructors WHERE username = '?'";
+		$stmt = $db->prepare($query);
+		$stmt->execute([$username]);
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	  }
+	  catch (PDOException $e)
+	  {
+		echo 'no salt';
+	  }
+  }
+
 
 
   function update_student_num_password_changes($username)
