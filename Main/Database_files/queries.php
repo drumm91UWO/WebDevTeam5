@@ -120,9 +120,9 @@ function get_scores_for_display($id) {
 
 	  try
 	  {
-		$query = "SELECT salt FROM students WHERE username = '?'";
+		$query = "SELECT salt FROM students WHERE username = '$username'";
 		$stmt = $db->prepare($query);
-		$stmt->execute([$username]);
+		$stmt->execute();
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	  }
 	  catch (PDOException $e)
@@ -157,9 +157,9 @@ function get_scores_for_display($id) {
 
 	  try
 	  {
-		$query = "SELECT salt FROM instructors WHERE username = '?'";
+		$query = "SELECT salt FROM instructors WHERE username = '$username'";
 		$stmt = $db->prepare($query);
-		$stmt->execute([$username]);
+		$stmt->execute();
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	  }
 	  catch (PDOException $e)

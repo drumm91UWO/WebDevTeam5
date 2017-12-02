@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $email = $_POST['email'];
 
 
-    add_user($userId, $username, $password, $lastName, $firstName,
+    add_student($userId, $username, $password, $lastName, $firstName,
              $email);
 
     dbDisconnect();
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     <div id="content">
         <h1>Add new user</h1>
 
-        <form action="add_user.php" method="post">
+        <form action="add_student.php" method="post">
             User ID: <input type="text" name="userId" size="8" autofocus/><br/>
 
             First Name: <input type="text" name="firstName" size="16"/><br/>

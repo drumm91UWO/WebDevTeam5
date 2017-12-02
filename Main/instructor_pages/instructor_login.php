@@ -73,9 +73,10 @@ function verify_password($user, $enteredPass)
     $pass = retrieve_instructor_password($user);
     $pass = $pass['password'];
     $salt = retrieve_instructor_salt($user);
+	$salt = $salt['salt'];
 
     // Hash entered password
-    $enteredPassHash = crypt($enteredPass, '$2y$12$' . $salt);
+    $enteredPassHash = crypt($enteredPass, '$2y$10$' . $salt);
 
     if ($pass === $enteredPassHash)
     {

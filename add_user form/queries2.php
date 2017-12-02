@@ -7,15 +7,14 @@ function add_student($id, $username, $password, $last, $first, $email)
     try 
     {
         $salt = substr(strtr(base64_encode(openssl_random_pseudo_bytes(22)), '+', '.'), 0, 22);
-        $hash = crypt($password, '$2y$12$' . $salt);
+        $hash = crypt($password, '$2y$10$' . $salt);
 
         $numPassChanges = 0;
-        insert_student_salt($salt);
 
-        $query = "INSERT INTO `students` VALUES (?,?,?,?,?,?,?,?,?)";
+        $query = "INSERT INTO students VALUES (?,?,?,?,?,?,?,?,?,?)";
         $stmt = $db->prepare($query);
         $stmt->execute([$id, $username, $first, $last, $email, $hash, 
-                        $numPassChanges, null, null]);
+                        $numPassChanges, null, null, $salt]);
         echo "User added successfully!";
         return true;
     }
@@ -27,23 +26,6 @@ function add_student($id, $username, $password, $last, $first, $email)
 
 }
 
-function insert_student_salt($salt)
-{
-    global $db;
-
-    try
-    {
-        $query = "INSERT INTO students (salt) VALUES(?)";
-        $stmt = $db->prepare($query);
-        $stmt->execute([$salt]);
-        return true;
-    }
-    catch (PDOException $e)
-    {
-
-    }
-}
-
 
 function add_instructor($id, $username, $password, $last, $first, $email)
 {
@@ -52,7 +34,7 @@ function add_instructor($id, $username, $password, $last, $first, $email)
     try 
     {
         $salt = substr(strtr(base64_encode(openssl_random_pseudo_bytes(22)), '+', '.'), 0, 22);
-        $hash = crypt($password, '$2y$12$' . $salt);
+        $hash = crypt($password, '$2y$10$' . $salt);
         
         $numPassChanges = 0;
 
