@@ -2,7 +2,7 @@
 // Start session
 session_start();
 
-require_once('../database_files/initialize.php');
+require_once('../Database_files/initialize.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
@@ -11,37 +11,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $user = get_student_id($username);
     $userid = $user['id']; 
 
-    if(verify($username, $password))
-    {
-        // Set session variables
-        $_SESSION['username'] = $username; 
-        $_SESSION['id'] = $userid;
-        $_SESSION['acct_type'] = "student";
+	if (verify_username($username))
+	{
+		if(verify($username, $password))
+		{
+			// Set session variables
+			$_SESSION['username'] = $username; 
+			$_SESSION['id'] = $userid;
+			$_SESSION['acct_type'] = "student";
 
-        update_last_student_login($userid);
+			update_last_student_login($userid);
 
-        header('Location: studenthome.php');
-    }
-    else
-    {
-        header('Location: login.html');
-    }
+			header('Location: studenthome.php');
+			exit();
+		}
+		else
+		{
+			header('Location: login.html');
+			exit();
+		}
+	}
+	else
+	{
+	
+	}
 }
 
 function verify($user, $pass)
 {
     $isValid = false;
 
-    if (verify_username($user))
+    if (verify_password($user, $pass))
     {
-        if (verify_password($user, $pass))
-        {
-            $isValid = true;
-        }
-        else
-        {
-            $isValid = false;
-        }
+        $isValid = true;
     }
     else
     {
@@ -72,8 +74,12 @@ function verify_password($user, $enteredPass)
     $isMatch = false;
     $pass = retrieve_student_password($user);
     $pass = $pass['password'];
+	$salt = retrieve_student_salt($user);
+	$salt = $salt['salt'];
 
-    if (password_verify($enteredPass, $pass))
+	$enteredPassHash = crypt($enteredPass, '$2y$10$' . $salt);
+
+    if ($pass === $enteredPassHash)
     {
         $isMatch = true;
     }
