@@ -81,7 +81,7 @@ function displayAnswers() {
         //note: this will be an ajax query. ajax queries use php. You would probably use a new php file.
         //note: use updateSelector() method for inspiration
     
-    var id = $("#selector option:selected").value()
+    var id = $("#selector option:selected").val()
     $.ajax({
         type: 'POST',
         url: '../Database_files/getscoresfordisplay.php',
