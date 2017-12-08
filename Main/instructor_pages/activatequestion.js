@@ -80,7 +80,7 @@ function displayAnswers() {
         //note: what that is going to look like is the number 15
         //note: this will be an ajax query. ajax queries use php. You would probably use a new php file.
         //note: use updateSelector() method for inspiration
-    /*
+    
     var id = $("#selector option:selected").value()
     $.ajax({
         type: 'POST',
@@ -90,8 +90,18 @@ function displayAnswers() {
             alert(result);
             var scores = JSON.parse(result);
             //alert(scores[0]["score"]);//you're going to want to actually have some results for this to work
+            var canvasElement = document.getElementById("barchart");
+            canvasElement.innerHTML = '';
+            var barWidth = 30;
+            var maxPoints = 200;
             if(scores.length > 0){
-                var canvasElement = document.getElementById("barchart");
+               
+                canvasElement.style.width = barWidth + 'px';
+                 canvasElement.style.marginBottom = '5px';
+                 canvasElement.style.backgroundColor = "green";
+                 canvasElement.style.height = ((scores[i].points / maxPoints) * 200) + 'px';
+                canvasElement.style.marginTop = 200 - parseInt(canvasElement.style.height) + 'px';
+                canvasElement.innerHTML = ['<p style="margin-top: ' + (parseInt(canvasElement.style.height) - 17) + 'px">'];
                 //result should be a JSON object of scores
                 //this is where you use canvas
                 //use canvas to genereate an html bar graph with this data
@@ -100,13 +110,13 @@ function displayAnswers() {
             }
         },
     });
-    */
+    
     //don't really want to make changes here
     //code here will run if successful or not
-    /*
+    
     document.getElementById("display").innerHTML = "At this time, there is no data to display for " + 
         $("#selector option:selected").text() + ".";
-    */
+    
     //sleep(1000);//sleep for 1 second
     //displayAnswers();
 }
