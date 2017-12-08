@@ -24,13 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             update_last_instructor_login($userid);
 
             header('Location: instructorhome.php');
-            exit();
         }
         else
         {
             header('Location: instructorlogin.html');
-            exit();
         }
+    }
+    else
+    {
+        header('Location: instructorlogin.html');
     }
 }
 

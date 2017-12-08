@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../database/initialize.php');
+require_once('../Database_files/initialize.php');
 
 if (isset($_SESSION["id"]))
 {

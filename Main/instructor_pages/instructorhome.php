@@ -10,7 +10,7 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
 <!DOCTYPE html>
 <html lang=en>
 <head>
-    <link href="styles.css" rel="stylesheet" type="text/css">
+    <link href="../styles.css" rel="stylesheet" type="text/css">
     <title></title>
     <meta charset="utf-8" />
     <meta name="author" content="Michael Drum" />
