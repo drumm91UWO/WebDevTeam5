@@ -92,7 +92,6 @@ function displayAnswers() {
             //alert(scores[0]["score"]);//you're going to want to actually have some results for this to work
             var canvasElement = document.getElementById("barchart");
             canvasElement.innerHTML = '';
-            var bar = null;
             var barWidth = 30;
             var maxPoints = 200;
             if(scores.length > 0){
