@@ -80,7 +80,7 @@ function displayAnswers() {
         //note: what that is going to look like is the number 15
         //note: this will be an ajax query. ajax queries use php. You would probably use a new php file.
         //note: use updateSelector() method for inspiration
-    /*
+    
     var id = $("#selector option:selected").value()
     $.ajax({
         type: 'POST',
@@ -110,13 +110,13 @@ function displayAnswers() {
             }
         },
     });
-    */
+    
     //don't really want to make changes here
     //code here will run if successful or not
-    /*
+    
     document.getElementById("display").innerHTML = "At this time, there is no data to display for " + 
         $("#selector option:selected").text() + ".";
-    */
+    
     //sleep(1000);//sleep for 1 second
     //displayAnswers();
 }
