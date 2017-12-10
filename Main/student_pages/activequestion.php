@@ -28,7 +28,6 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
 </head>
 <body>
     <h1>Active Question</h1>
-<<<<<<< HEAD
 
 
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
@@ -45,7 +44,6 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
     </div>
     </nav>
 
-=======
 	<?php
 		require_once('../Database_files/initialize.php');
 		$question = retrieve_all_activated_questions()[0];
@@ -53,8 +51,5 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
 		echo $question['question_statement'] . "<br>";
 
 	?>
-    <a href="studenthome.php">Home</a><br>
-    <a href="login.html">Logout</a>
->>>>>>> 62a2b851be6624d7cdfa4486c93ad48ea30b8397
 </body>
 </html>
