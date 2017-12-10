@@ -23,9 +23,10 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
 	<?php
 		require_once('../Database_files/initialize.php');
 		$question = retrieve_all_activated_questions()[0];
-		echo "<h3>" . $question['description'] . "</h3>";
+		echo "<h2>" . $question['description'] . "</h2>";
+		echo "Section: " . $question['section_number'] . "<br><br>";
 		echo $question['question_statement'] . "<br>";
-
+		echo $question['grader_code'];
 	?>
     <a href="studenthome.php">Home</a><br>
     <a href="login.html">Logout</a>
