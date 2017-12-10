@@ -18,3 +18,8 @@ body{
 select{
     font-size: x-large;
 }
+
+a{
+    border-radius: 40px;
+    border: 2px solid black;
+}

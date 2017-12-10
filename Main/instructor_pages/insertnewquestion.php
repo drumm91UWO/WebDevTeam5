@@ -1,4 +1,12 @@
-<?php error_reporting ( E_ALL | E_STRICT ); ?>
+<?php error_reporting ( E_ALL | E_STRICT ); 
+session_start();
+if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
+{
+    header("Location: instructorlogin.html");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -38,6 +46,8 @@
 			}else{
 				?><p>A necessary field was not filled out. Please <a href="insertnewquestion.html">try again</a>.</p><?php
 			}
+
+			header("Location: insertnewquestion.html");
 		?>
 	</body>
 </html>

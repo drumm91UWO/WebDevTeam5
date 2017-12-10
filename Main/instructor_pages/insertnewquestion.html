@@ -1,30 +1,58 @@
 ﻿<!DOCTYPE html>
 <html lang=en>
 <head>
-    <link href="../styles.css" rel="stylesheet" type="text/css">
     <title></title>
     <meta charset="utf-8" />
     <meta name="author" content="Michael Drum" />
     <meta name="keywords" content="" />
     <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" 
+    integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" 
+    integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <link href="../styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <h1>Insert New Question</h1>
+
+
+    <!-- NavBar -->
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    <a class="navbar-brand" href="studenthome.php"><img src="../../images/UWOWebClicker.png"></a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="instructorhome.php">Home </a>
+            <a class="nav-item nav-link" href="activatequestion.php">Activate Question (with insights)</a>
+            <a class="nav-item nav-link" href="displayscores.html">Display Scores</a>
+            <a class="nav-item nav-link" href="#">Insert New Question<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="editquestion.php">Edit Question</a>
+            <a class="nav-item nav-link" href="deletequestion.html">Delete Question</a>
+            <a class="nav-item nav-link" href="student_logout.php">Logout</a>
+         </div>
+    </div>
+    </nav>
+
+
     <form action="insertnewquestion.php" method="post">
-        ID (if not auto generated): <input type="number" name="id" min="1" max="10000"><br>
         Status:<br>
         <input type="radio" name="status" value="inactive"> Inactive<br>
         <input type="radio" name="status" value="draft" checked> Draft<br>
-        Question statement: <input type="text" name="questionStatement"><br>
-        Correct answer: <input type="text" name="correctAnswerIsExactly"><br>
-        Number of points: <input type="number" name="numberOfPoints" min="1" max="100"><br>
-        Description: <input type="text" name="description"><br>
-        Keywords: <input type="text" name="keywords"><br>
-        Section number: <input type="text" name="sectionNumber"><br>
-        PHP Grader Code: <input type="text" name="phpGraderCode"><br>
+        Question statement: <input type="text" name="questionStatement" autofocus required><br>
+        Correct answer: <input type="text" name="correctAnswerIsExactly" required><br>
+        Number of points: <input type="number" name="numberOfPoints" min="1" max="100" required><br>
+        Description: <input type="text" name="description" required><br>
+        Keywords: <input type="text" name="keywords" required><br>
+        Section number: <input type="text" name="sectionNumber" required><br>
+        PHP Grader Code: <input type="text" name="phpGraderCode" required><br>
         <input type="submit">
     </form>
-    <a href="instructorhome.html">Home</a><br>
-    <a href="login.html">Logout</a>
 </body>
 </html>
