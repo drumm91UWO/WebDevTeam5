@@ -31,7 +31,6 @@ function attemptToActivateQuestion(id) {
     if (recieved) {
         displayAnswers(id);
         startTimer();
-        //updateSelector();
     }
 }
 function updateSelector() {
@@ -48,8 +47,6 @@ function updateSelector() {
                 .end()
                 ;
             for (var i = 0; i < questions.length; i++){
-                //alert("trying to add question " + questions[i].description);
-                //alert("Adding " + questions[i].id + " to the value of " + questions[i].description + " on selector");
                 selector.append('<option value=' + questions[i].id + '>' + questions[i].description + '</option>');
             }
         },
@@ -138,17 +135,8 @@ function displayAnswers(id) {
             
         },
     });
-    //wait(2000);//sleep for 2 seconds
-    //alert("attempting to call display answers again for first time");
-    //displayAnswersAgain(id, chart, scores, uniqueData);
-    //don't really want to make changes here
-    //code here will run if successful or not
-    
-    //sleep(1000);//sleep for 1 second
-    //displayAnswers(id);
 }
 function displayAnswersAgain(/*id, chart, scores, uniqueData*/) {
-    //alert("Calling display answers again");
     if (id && chart && scores && uniqueData) {
         $.ajax({
             type: 'POST',
@@ -156,32 +144,27 @@ function displayAnswersAgain(/*id, chart, scores, uniqueData*/) {
             url: '../Database_files/getscoresfordisplay.php',
             data: { questionId: id },
             success: function (result) {
-                //alert(result);
                 if (!result.includes("Aborting")) {
                     scores = JSON.parse(result);
                     if (scores.length > 0) {
                         uniqueData = getUniqueData(scores);
-                        alert(uniqueData);
-                        alert(chart.options.data[0].dataPoints);
                         chart.options.data[0].dataPoints = uniqueData;
                         chart.render();
                     }
                 }
             },
         });
-        //wait(2000);//sleep for 2 seconds
-        //displayAnswersAgain(id, chart, scores, uniqueData);
     }
 }
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-function wait(ms) {
-    var start = Date.now(),
-        now = start;
-    while (now - start < ms) {
-        now = Date.now();
-    }
+function wait(ms) {
+    var start = Date.now(),
+        now = start;
+    while (now - start < ms) {
+        now = Date.now();
+    }
 }
 function getUniqueData(scores) {
     //goal
