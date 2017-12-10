@@ -13,7 +13,7 @@ error_reporting ( E_ALL | E_STRICT );
 <!DOCTYPE html>
 <html lang=en>
 <head>
-    <title></title>
+    <title>Activate Question Page</title>
     <meta charset="utf-8" />
     <meta name="author" content="Michael Drum" />
     <meta name="keywords" content="" />
@@ -42,7 +42,7 @@ error_reporting ( E_ALL | E_STRICT );
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-    <a class="navbar-brand" href="studenthome.php"><img src="../../images/UWOWebClicker.png"></a>
+    <a class="navbar-brand" href="studenthome.php"><img src="../../images/UWOWebClicker.png" alt="UWO WebClicker"></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="instructorhome.php">Home </a>

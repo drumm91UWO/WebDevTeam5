@@ -10,7 +10,7 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
 <!DOCTYPE html>
 <html lang=en>
 <head>
-    <title></title>
+    <title>Display Scores For Date Page</title>
     <meta charset="utf-8" />
     <meta name="author" content="Michael Drum" />
     <meta name="keywords" content="" />
@@ -34,7 +34,7 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-    <a class="navbar-brand" href="studenthome.php"><img src="../../images/UWOWebClicker.png"></a>
+    <a class="navbar-brand" href="studenthome.php"><img src="../../images/UWOWebClicker.png" alt="UWO WebClicker"></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="instructorhome.php">Home </a>
