@@ -20,7 +20,9 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
 <body>
     <h1>Instructor Home</h1>
     <p>
-        <button>Deactivate all questions</button>
+        <form action="deactivate_questions.php">
+            <input type="submit" value="Deactivate all questions">
+        </form>
     </p>
     <a href="activatequestion.php">Activate question (with insights)</a><br>
     <a href="displayscores.html">Display scores for a certain day</a><br>

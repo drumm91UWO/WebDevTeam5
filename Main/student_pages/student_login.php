@@ -23,17 +23,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 			update_last_student_login($userid);
 
 			header('Location: studenthome.php');
-			exit();
 		}
 		else
 		{
-			header('Location: login.html');
-			exit();
+			echo "<script type='text/javascript'>alert('Your login or password is incorrect. Please try again.')</script>";
+            echo "<script>window.location.assign('login.html');</script>";
 		}
 	}
 	else
 	{
-	
+        echo "<script type='text/javascript'>alert('Your login or password is incorrect. Please try again.')</script>";
+        echo "<script>window.location.assign('login.html');</script>";
 	}
 }
 
