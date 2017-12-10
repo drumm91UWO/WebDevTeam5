@@ -1,8 +1,9 @@
 <?php
 
-include_once('../php_files/initialize.php');
+include_once('../database_files/initialize.php');
 
-deactivate_all_active_questions();
+deactivate_all_activated_questions();
+header("Location: instructorhome.php");
 
 
 ?>
