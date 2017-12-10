@@ -27,12 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         }
         else
         {
-            header('Location: instructorlogin.html');
+            echo "<script type='text/javascript'>alert('Your login or password is incorrect. Please try again.')</script>";
+            echo "<script>window.location.assign('instructorlogin.html');</script>";
         }
     }
     else
     {
-        header('Location: instructorlogin.html');
+        echo "<script type='text/javascript'>alert('Your login or password is incorrect. Please try again.')</script>";
+        echo "<script>window.location.assign('instructorlogin.html');</script>";
     }
 }
 
