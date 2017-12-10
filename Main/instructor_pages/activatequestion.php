@@ -35,7 +35,6 @@ error_reporting ( E_ALL | E_STRICT );
 </head>
 <body>
     <h1>Activate Question</h1>
-<<<<<<< HEAD
     <h3>With Insights</h3>
 
 <!-- NavBar -->
@@ -58,8 +57,6 @@ error_reporting ( E_ALL | E_STRICT );
     </nav>
 
 
-=======
->>>>>>> 62a2b851be6624d7cdfa4486c93ad48ea30b8397
     <p>
         <select id="selector">
             <?php
