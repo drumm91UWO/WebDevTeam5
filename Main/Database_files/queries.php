@@ -46,7 +46,206 @@
 
   }
 
-function get_scores_for_display($id) {
+
+  function edit_question($id, $status, $statement, $answer, $points, $description, $keywords, $section_number, $grader_code)
+  {
+      global $db;
+
+      try
+      {
+        edit_status($status, $id);
+        if ($statement != "")
+        {
+            edit_statement($statement, $id);
+        }
+        if ($answer != "")
+        {
+            edit_answer($answer, $id);
+        }
+        if ($points != "")
+        {
+            edit_points($points, $id);
+        }
+        if ($description != "")
+        {
+            edit_description($description, $id);
+        }
+        if ($keywords != "")
+        {
+            edit_keywords($keywords, $id);
+        }
+        if ($section_number != "")
+        {
+            edit_section_number($section_number, $id);
+        }
+        if ($grader_code != "")
+        {
+            edit_grader_code($grader_code, $id);
+        }
+
+      }
+      catch (PDOException $e)
+      {
+          dbDisconnect();
+          exit("Aborting: There was an error when trying to edit a question.");
+      }
+
+  }
+
+
+  function edit_status($status, $id)
+  {
+    global $db;
+
+    try
+    {
+        $query = "UPDATE questions SET status = '$status'
+                  WHERE id = '$id'";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        return true;
+    }
+    catch (PDOException $e)
+    {
+        dbDisconnect();
+    }
+  }
+
+
+  function edit_statement($statement, $id)
+  {
+    global $db;
+
+    try
+    {
+        $query = "UPDATE questions SET question_statement = '$statement'
+                  WHERE id = '$id'";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        return true;
+    }
+    catch (PDOException $e)
+    {
+        dbDisconnect();
+    }
+  }
+
+
+  function edit_answer($answer, $id)
+  {
+    global $db;
+
+    try
+    {
+        $query = "UPDATE questions SET correct_answer = '$answer'
+                  WHERE id = '$id'";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        return true;
+    }
+    catch (PDOException $e)
+    {
+        dbDisconnect();
+    }
+  }
+
+
+  function edit_points($points, $id)
+  {
+    global $db;
+
+    try
+    {
+        $query = "UPDATE questions SET points = '$points'
+                  WHERE id = '$id'";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        return true;
+    }
+    catch (PDOException $e)
+    {
+        dbDisconnect();
+    }
+  }
+
+
+  function edit_description($description, $id)
+  {
+    global $db;
+
+    try
+    {
+        $query = "UPDATE questions SET description = '$description'
+                  WHERE id = '$id'";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        return true;
+    }
+    catch (PDOException $e)
+    {
+        dbDisconnect();
+    }
+  }
+
+
+  function edit_keywords($keywords, $id)
+  {
+    global $db;
+
+    try
+    {
+        $query = "UPDATE questions SET keywords = '$keywords'
+                  WHERE id = '$id'";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        return true;
+    }
+    catch (PDOException $e)
+    {
+        dbDisconnect();
+    }
+  }
+
+
+  function edit_section_number($sectionNumber, $id)
+  {
+    global $db;
+
+    try
+    {
+        $query = "UPDATE questions SET section_number = '$sectionNumber'
+                  WHERE id = '$id'";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        return true;
+    }
+    catch (PDOException $e)
+    {
+        dbDisconnect();
+    }
+  }
+
+
+  function edit_grader_code($graderCode, $id)
+  {
+    global $db;
+
+    try
+    {
+        $query = "UPDATE questions SET grader_code = '$graderCode'
+                  WHERE id = '$id'";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        return true;
+    }
+    catch (PDOException $e)
+    {
+        dbDisconnect();
+    }
+  }
+
+
+    function get_scores_for_display($id) {
 	  global $db;
 	  try {
 		$query = "SELECT * FROM scores WHERE ( question_id = " . $id . ") ";
