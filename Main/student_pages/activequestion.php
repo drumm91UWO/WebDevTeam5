@@ -4,6 +4,7 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
 {
     header("Location: login.html");
     exit();
+	error_reporting ( E_ALL | E_STRICT );
 }
 ?>
 
@@ -19,7 +20,13 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
 </head>
 <body>
     <h1>Active Question</h1>
-    
+	<?php
+		require_once('../Database_files/initialize.php');
+		$question = retrieve_all_activated_questions()[0];
+		echo "<h3>" . $question['description'] . "</h3>";
+		echo $question['question_statement'] . "<br>";
+
+	?>
     <a href="studenthome.php">Home</a><br>
     <a href="login.html">Logout</a>
 </body>
