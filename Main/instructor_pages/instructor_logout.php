@@ -6,6 +6,7 @@ if (isset($_SESSION["id"]))
 {
 $id = $_SESSION['id'];
 update_last_instructor_logout($id);
+session_destroy();
 header("Location: instructorlogin.html");
 }
 else

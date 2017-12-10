@@ -1,20 +1,105 @@
-h1{
-    text-align: center;
-    background-color: darkblue;
-    color: white;
-    font-weight: 800;
-}
-h3{
-    text-align: center;
-}
-form{
+/*form{
     background-color: azure;
     padding: 10px;
-    border-style: inset;
-}
+    border-style: inset;*/
+/*@media screen and (max-width:400px;){
+}*/
 body{
     font-size: larger;
+	font-family: Times New Roman, San Serif;
+    background-color: lightgray;
+   	background-size: cover;
+	background-image: url(../Desktop/Main/images/background.png);
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: right;
+	color:  red;
+	background-image: none;
+
+
 }
+#wrapper{
+	min-height: 750px;
+}
+body#proof{
+	 font-size: larger;
+	font-family: Times New Roman, San Serif;
+    background-color: lightgray;
+   	background-size: cover;
+	background-image: url(../Desktop/Main/images/background.png);
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: right;
+	color:  red;
+	background-image: none;
+
+}
+main#wrapper{
+}
+nav {
+    font-size: 12px;
+	float: left;
+    width: auto;
+    height: auto;
+	background-color: gray;
+    border: 3px solid black;
+}
+
+li {
+	list-style-type: none;
+    line-height: 20px;
+	display: block;
+	}
+	#logo{
+	float: left;
+		}
+#display_answerfld{
+	
+	 font-size: 12px;
+    width: auto;
+    height: auto;
+	background-color: gray;
+    border: 3px solid black;
+}
+		
+		
+#form
+{	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	padding: 10px;
+	border-radius: 5px;
+	width: auto;
+	height: auto;
+	
+	border: 3px solid black;
+	}
+nav#pnav{
+	font-family:Times Roman;
+	font-size: 12px;
+	float: left;
+    width: auto;
+    height: auto;
+	background-color: white;
+    border: 3px solid black;
+		
+	}
+
+header {
+  background-color: white;
+  height: 100px;
+  width:auto;
+  border-radius: 5px;
+				}
+#footer {
+   height:50px;
+    width:auto;
+	background-color: gray;
+	text-align: center;
+  	margin-top: 15px;
+	padding-top: 15px;
+}
+	
 select{
     font-size: x-large;
 }
