@@ -25,6 +25,7 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="studenthome.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <h1>Student Home</h1>

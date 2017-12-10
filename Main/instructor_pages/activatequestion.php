@@ -35,6 +35,7 @@ error_reporting ( E_ALL | E_STRICT );
 </head>
 <body>
     <h1>Activate Question</h1>
+<<<<<<< HEAD
     <h3>With Insights</h3>
 
 <!-- NavBar -->
@@ -57,6 +58,8 @@ error_reporting ( E_ALL | E_STRICT );
     </nav>
 
 
+=======
+>>>>>>> 62a2b851be6624d7cdfa4486c93ad48ea30b8397
     <p>
         <select id="selector">
             <?php
@@ -71,7 +74,8 @@ error_reporting ( E_ALL | E_STRICT );
     </p>
     <p>
         <button id="button" onclick="activateQuestion(document.getElementById('selector').value)">Activate Question</button> This will deactivate all questions before activating the selected question.<br>
-        <button id="button2" onclick="deactivateQuestion()" disabled="true">Deactivate Question</button>
+        <button id="button2" onclick="deactivateQuestion()" disabled="true">Deactivate Question</button><br>
+		<button id="button3" onclick="displayAnswersAgain()" disabled="true">Update Graph</button>
     </p>
     <div id="timer">
         The timer will be displayed here.
