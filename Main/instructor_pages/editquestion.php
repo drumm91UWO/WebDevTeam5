@@ -48,7 +48,7 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
             <a class="nav-item nav-link" href="insertnewquestion.html">Insert New Question</a>
             <a class="nav-item nav-link" href="#">Edit Question<span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="deletequestion.html">Delete Question</a>
-            <a class="nav-item nav-link" href="student_logout.php">Logout</a>
+            <a class="nav-item nav-link" href="instructor_logout.php">Logout</a>
          </div>
     </div>
     </nav>

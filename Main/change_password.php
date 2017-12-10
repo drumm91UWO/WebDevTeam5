@@ -37,7 +37,7 @@ function change_password($username)
         header('../changepassword.html'); // reload page
 
     }
-    else if  (!passwords_match($oldPassword, $oldPassHash))
+    else if  (!passwords_match($username, $oldPassword))
     {        
         header('Location: ../changepassword.html'); // reload page
     }
@@ -92,7 +92,7 @@ function change_instructor_password($username)
             header('Location: changepassword.html'); // reload page
     
         }
-        else if  (!passwords_match($oldPassword, $oldPassHash))
+        else if  (!passwords_match($username, $oldPassword))
         {        
             header('Location: changepassword.html'); // reload page
         }
@@ -130,17 +130,27 @@ function change_instructor_password($username)
 }
 
 
-function passwords_match($password, $hash)
+function passwords_match($user, $enteredPass)
 {
 
-    if(password_verify($password, $hash))
+    $isMatch = false;
+    $pass = retrieve_student_password($user);
+    $pass = $pass['password'];
+	$salt = retrieve_student_salt($user);
+	$salt = $salt['salt'];
+
+	$enteredPassHash = crypt($enteredPass, '$2y$10$' . $salt);
+
+    if ($pass === $enteredPassHash)
     {
-        return true;
+        $isMatch = true;
     }
     else
     {
-        return false;
+        $isMatch = false;
     }
+
+    return $isMatch;
 }
 
 
