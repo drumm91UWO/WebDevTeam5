@@ -35,7 +35,8 @@ function updateSelector() {
                 ;
             for (var i = 0; i < questions.length; i++){
                 //alert("trying to add question " + questions[i].description);
-                selector.append('<option value="' + questions[i].id + '">' + questions[i].description + '</option>');
+                //alert("Adding " + questions[i].id + " to the value of " + questions[i].description + " on selector");
+                selector.append('<option value=' + questions[i].id + '>' + questions[i].description + '</option>');
             }
         },
     });
@@ -76,49 +77,61 @@ function incrementTime() {
     }
 }
 function displayAnswers() {
+    //insert a flag here to not display answers
+
     //get current answer data to $("#selector option:selected").value() <--question id
         //note: what that is going to look like is the number 15
         //note: this will be an ajax query. ajax queries use php. You would probably use a new php file.
         //note: use updateSelector() method for inspiration
-    
-    var id = $("#selector option:selected").val()
+    var id = document.getElementById('selector').value;
     $.ajax({
         type: 'POST',
         url: '../Database_files/getscoresfordisplay.php',
         data: {questionId: id},
         success: function (result) {
             alert(result);
-            var scores = JSON.parse(result);
-            //alert(scores[0]["score"]);//you're going to want to actually have some results for this to work
-            var canvasElement = document.getElementById("barchart");
-            canvasElement.innerHTML = '';
-            var barWidth = 30;
-            var maxPoints = 200;
-            if(scores.length > 0){
-               
-                canvasElement.style.width = barWidth + 'px';
-                 canvasElement.style.marginBottom = '5px';
-                 canvasElement.style.backgroundColor = "green";
-                 canvasElement.style.height = ((scores[i].points / maxPoints) * 200) + 'px';
-                canvasElement.style.marginTop = 200 - parseInt(canvasElement.style.height) + 'px';
-                canvasElement.innerHTML = ['<p style="margin-top: ' + (parseInt(canvasElement.style.height) - 17) + 'px">'];
-                //result should be a JSON object of scores
-                //this is where you use canvas
-                //use canvas to genereate an html bar graph with this data
-                //set the inner html of display div to the bar graph
-                //code here will only run if successful
+            if (!result.includes("Aborting")) {
+                var scores = JSON.parse(result);
+                if (scores.length > 0) {
+                    var chart = new CanvasJS.Chart("barchart", {
+                        animationEnabled: true,
+
+                        title: {
+                            text: "Live Answers"
+                        },
+                        axisX: {
+                            interval: 1
+                        },
+                        axisY2: {
+                            interlacedColor: "rgba(1,77,101,.2)",
+                            gridColor: "rgba(1,77,101,.1)",
+                            title: "Number of Companies"
+                        },
+                        data: [{
+                            type: "bar",
+                            name: "companies",
+                            axisYType: "secondary",
+                            color: "#014D65",
+                            dataPoints: [
+                                { y: 3, label: "Sweden" },
+                                { y: 7, label: "Taiwan" },
+                                { y: 5, label: "Russia" },
+                                { y: 9, label: "Spain" }
+                            ]
+                        }]
+                    });
+                    chart.render();
+                }
             }
+            
         },
     });
     
     //don't really want to make changes here
     //code here will run if successful or not
     
-    document.getElementById("display").innerHTML = "At this time, there is no data to display for " + 
-        $("#selector option:selected").text() + ".";
-    
-    //sleep(1000);//sleep for 1 second
-    //displayAnswers();
+    sleep(1000);//sleep for 1 second
+    displayAnswers();
 }
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));

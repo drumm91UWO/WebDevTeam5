@@ -49,8 +49,7 @@
 function get_scores_for_display($id) {
 	  global $db;
 	  try {
-		$query = "SELECT * FROM scores WHERE ( question_id = " + $id + ") ";
-	
+		$query = "SELECT * FROM scores WHERE ( question_id = " . $id . ") ";
 		$stmt = $db->prepare($query);
 		$stmt->execute();
 	
@@ -58,7 +57,7 @@ function get_scores_for_display($id) {
 	
 	  } catch (PDOException $e) {
 		  dbDisconnect();
-		  exit("Aborting: There was a database error when trying to retrieve the questions.");
+		  exit("Aborting: There was a database error when trying to retrieve the scores.");
 	  }
   }
 

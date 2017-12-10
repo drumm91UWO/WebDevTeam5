@@ -20,6 +20,7 @@ error_reporting ( E_ALL | E_STRICT );
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <script type="text/javascript" src="activatequestion.js"></script>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
@@ -47,8 +48,8 @@ error_reporting ( E_ALL | E_STRICT );
     <div id="display">
         Data will be displayed here.
 	   
-	    <canvas id="barchart">
-	    </canvas>
+	    <div id="barchart">
+	    </div>
 	  
         <!--Display bar graph here-->
     </div>
