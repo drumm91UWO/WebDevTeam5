@@ -723,4 +723,19 @@
         }
       }
 
+
+      function search_for_questions($id, $keywords, $section_number, $points)
+      {
+          global $db;
+
+          try
+          {
+              
+          }
+          catch (PDOException $e)
+          {
+
+          }
+      }
+
 ?>
