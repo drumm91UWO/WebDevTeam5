@@ -24,6 +24,23 @@
 
   }
 
+  function make_score($studentid, $questionid, $score, $answer) {
+  $id = null;
+  global $db;
+
+    try {
+      $query = "INSERT INTO scores VALUES (?,?,?,?,?)";
+      $stmt = $db->prepare($query);
+      $stmt->execute([$id, $studentid, $questionid, $score, $answer]);
+      return true;
+    } catch (PDOException $e) {
+        dbDisconnect();
+        //exit("Aborting: There was a database error when trying to insert the question.");
+		exit($e);
+    }
+
+  }
+
   function retrieve_question($keywords,$description,$section_number,$points,$score_earned) {
   global $db;
 
