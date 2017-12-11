@@ -45,9 +45,9 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
     <a class="navbar-brand" href="studenthome.php"><img src="../../images/UWOWebClicker.png" alt="UWO WebClicker"></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="instructorhome.php">Home </a>
+            <a class="nav-item nav-link" href="instructorhome.php">Home </a>
             <a class="nav-item nav-link" href="activatequestion.php">Activate Question (with insights)</a>
-            <a class="nav-item nav-link" href="displayscores.html">Display Scores<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="displayscores.html">Display Scores<span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="insertnewquestion.html">Insert New Question</a>
             <a class="nav-item nav-link" href="editquestion.php">Edit Question</a>
             <a class="nav-item nav-link" href="deletequestion.html">Delete Question</a>

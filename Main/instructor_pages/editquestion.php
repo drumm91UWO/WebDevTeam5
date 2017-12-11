@@ -21,10 +21,6 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
 	<script src="../Database_files/submitquestionedit.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" 
-    integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" 
     integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     
@@ -50,11 +46,11 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
     <a class="navbar-brand" href="studenthome.php"><img src="../../images/UWOWebClicker.png" alt="UWO WebClicker"></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="instructorhome.php">Home </a>
+            <a class="nav-item nav-link" href="instructorhome.php">Home </a>
             <a class="nav-item nav-link" href="activatequestion.php">Activate Question (with insights)</a>
             <a class="nav-item nav-link" href="displayscores.html">Display Scores</a>
             <a class="nav-item nav-link" href="insertnewquestion.html">Insert New Question</a>
-            <a class="nav-item nav-link" href="#">Edit Question<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="#">Edit Question<span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="deletequestion.html">Delete Question</a>
             <a class="nav-item nav-link" href="instructor_logout.php">Logout</a>
          </div>
