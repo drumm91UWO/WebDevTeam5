@@ -51,11 +51,13 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
 
 	<?php
 		require_once('../Database_files/initialize.php');
-		$question = retrieve_all_activated_questions()[0];
-		echo "<h2>" . $question['description'] . "</h2>";
-		echo "Section: " . $question['section_number'] . "<br><br>";
-		echo $question['question_statement'] . "<br>";
-		echo $question['grader_code'];
+		if(retrieve_all_activated_questions()){
+			$question = retrieve_all_activated_questions()[0];
+			echo "<h2>" . $question['description'] . "</h2>";
+			echo "Section: " . $question['section_number'] . "<br><br>";
+			echo $question['question_statement'] . "<br>";
+			echo $question['grader_code'];
+		}
 	?>
 </body>
 <footer>
