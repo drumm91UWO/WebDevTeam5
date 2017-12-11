@@ -3,8 +3,9 @@
     "",
     "\\Main",
     "\\Main\\Database_files",
-    "\\Main\\instructor_pages"
+    "\\Main\\instructor_pages",
+    "\\Main\\student_pages"
   ],
-  "SelectedNode": "\\Main\\Database_files\\submitquestionedit.js",
+  "SelectedNode": "\\Main\\student_pages\\activequestion.php",
   "PreviewInSolutionExplorer": false
 }

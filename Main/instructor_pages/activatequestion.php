@@ -44,7 +44,7 @@ error_reporting ( E_ALL | E_STRICT );
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-    <a class="navbar-brand" href="studenthome.php"><img src="../../images/UWOWebClicker.png" alt="UWO WebClicker"></a>
+    <a class="navbar-brand" href="instructorhome.php"><img src="../../images/UWOWebClicker.png" alt="UWO WebClicker"></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="instructorhome.php">Home </a>

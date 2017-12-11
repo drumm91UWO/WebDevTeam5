@@ -57,6 +57,8 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
 			echo "Section: " . $question['section_number'] . "<br><br>";
 			echo $question['question_statement'] . "<br>";
 			echo $question['grader_code'];
+		}else{
+			echo "There is no active question at this time.";
 		}
 	?>
 </body>
