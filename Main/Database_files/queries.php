@@ -730,7 +730,41 @@
 
           try
           {
-              
+            if ($id != "" && $keywords != "" && $section_number  != "" && $points != null)
+            {
+              $query = "SELECT * FROM questions WHERE time_of_deactivation <> null 
+              AND $id = '$id' 
+              AND keywords LIKE $keywords
+              AND section_number = $section_number
+              AND points = $points";
+            }
+            else if ($id === "")
+            {
+                $query = "SELECT * FROM questions WHERE time_of_deactivation <> null
+                AND keywords LIKE $keywords
+                AND section_number = $section_number
+                AND points = $points";
+            }
+            else if ($keywords === "")
+            {
+               $query = "SELECT * FROM questions WHERE time_of_deactivation <> null
+               AND id = '$id' 
+               AND section_number = '$section_number'
+               AND points = '$points'";
+            }
+            else if ($section_number === "")
+            {
+                $query = "SELECT * FROM questions WHERE time_of_deactivation <> null
+                AND id = '$id'
+                AND keywords LIKE '$keywords'
+                AND points = $points";
+            }
+            else if ($points === "")
+            {
+                $query = "SELECT * FROM questions WHERE time_of_deactivation <> null
+                AND id = '$id'
+                AND keywords LIKE '$keywords'"
+            }
           }
           catch (PDOException $e)
           {

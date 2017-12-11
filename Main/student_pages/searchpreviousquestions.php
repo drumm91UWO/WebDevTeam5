@@ -10,12 +10,11 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
     if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
         $id = $_POST['idIsExactly'];
-        $idContains = $_POST['idContains'];
-        $pointsGreaterThan = $_POST['numberOfPointsGreaterThan'];
         $points = $_POST['numberOfPointsEqualTo'];
-        $pointsLessThan = $_POST['numberOfPointsLessThan'];
         $keywords = $_POST['keywords'];
         $section = $_POST['sectionNumber']
+
+        $questions = search_for_questions($id, $keywords, $section, $points);
     }
 }
 ?>
