@@ -9,7 +9,8 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
 <!DOCTYPE html>
 <html lang=en>
 <head>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" 
     integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     
@@ -30,7 +31,6 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="studenthome.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <h1>Student Home</h1>
