@@ -20,7 +20,7 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
 	<body>
 		<h1>Insert New Question</h1>
 		<?php
-			require_once('Database_files/initialize.php');
+			require_once('../Database_files/initialize.php');
 			//gather input
 			$id = $_POST["id"];
 			$status = $_POST["status"];

@@ -763,7 +763,7 @@
             {
                 $query = "SELECT * FROM questions WHERE time_of_deactivation <> null
                 AND id = '$id'
-                AND keywords LIKE '$keywords'"
+                AND keywords LIKE '$keywords'";
             }
           }
           catch (PDOException $e)

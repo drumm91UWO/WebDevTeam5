@@ -57,7 +57,7 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="studenthome.php">Home</a>
-            <a class="nav-item nav-link active" href="searchpreviousquestions.html">Search Previous Questions <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="searchpreviousquestions.php">Search Previous Questions <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="student_logout.php">Logout</a>
          </div>
     </div>

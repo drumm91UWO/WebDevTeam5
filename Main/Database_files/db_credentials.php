@@ -1,8 +1,8 @@
 <?php
 
 define("DB_SERVER", "localhost");
-define("DB_USER", "team5" );
-define("DB_PWD", "steam5");
-define("DB_NAME", "team5");
+define("DB_USER", "drumm91" );
+define("DB_PWD", "s0576191");
+define("DB_NAME", "drumm91");
 
 ?>

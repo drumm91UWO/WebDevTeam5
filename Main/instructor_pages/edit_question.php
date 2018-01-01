@@ -1,6 +1,6 @@
 <?php
 
-include_once('../database_files/initialize.php');
+include_once('../Database_files/initialize.php');
 
 if ($_SERVER['REQUEST_METHOD'] === "POST")
 {
