@@ -176,6 +176,7 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "student")
 					$query = substr($query, 0, strlen($query) - 6);
 				}
 				//do the search
+				//echo $query;//todo: remove
 				$questions = retrieve_by_query($query);
 				//display the results
 				echo "<table class='blueTable'>

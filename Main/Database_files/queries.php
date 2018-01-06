@@ -8,7 +8,7 @@
 		return  $stmt->fetchAll(PDO::FETCH_ASSOC);
 	  } catch (PDOException $e) {
 		  dbDisconnect();
-		  exit("Aborting: There was a database error when trying to retrieve by query.");
+		  exit("Aborting: There was a database error when trying to retrieve by query. " . $e);
 	  }
   }
 
@@ -331,6 +331,19 @@
 		  exit("Aborting: There was a database error when trying to retrieve the questions.");
 	  }
   }
+
+	function retrieve_score_with_question($questionid) {
+		global $db;
+		try {
+		$query = "SELECT * FROM scores WHERE ( question_id = " . $questionid . ") ";
+		$stmt = $db->prepare($query);
+		$stmt->execute();
+		return  $stmt->fetchAll(PDO::FETCH_ASSOC);
+		} catch (PDOException $e) {
+			dbDisconnect();
+			exit("Aborting: There was a database error when trying to retrieve the questions.");
+		}
+    } 
 
   function retrieve_all_inactive_questions() {
 	  global $db;
@@ -718,6 +731,25 @@
         {
           $query = "SELECT id FROM students
                   WHERE username = '$username'";
+                  $stmt = $db->prepare($query);
+                  $stmt->execute();
+          return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $e)
+        {
+          dbDisconnect();
+          exit("Aborting: could not retrieve student id.");
+        }
+      }
+
+	  function get_student_name($id)
+      {
+        global $db;
+
+        try 
+        {
+          $query = "SELECT * FROM students
+                  WHERE id = '$id'";
                   $stmt = $db->prepare($query);
                   $stmt->execute();
           return $stmt->fetch(PDO::FETCH_ASSOC);

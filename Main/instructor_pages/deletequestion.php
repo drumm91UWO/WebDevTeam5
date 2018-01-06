@@ -45,7 +45,7 @@ require_once('../Database_files/initialize.php');
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="instructorhome.php">Home </a>
             <a class="nav-item nav-link" href="activatequestion.php">Activate Question (with insights)</a>
-            <a class="nav-item nav-link" href="displayscores.html">Display Scores</a>
+            <a class="nav-item nav-link" href="displayscores.php">Display Scores</a>
             <a class="nav-item nav-link" href="insertnewquestion.php">Insert New Question</a>
             <a class="nav-item nav-link" href="editquestion.php">Edit Question</a>
             <a class="nav-item nav-link active" href="#">Delete Question<span class="sr-only">(current)</span></a>

@@ -46,7 +46,7 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
 			<div class="navbar-nav">
 				<a class="nav-item nav-link" href="instructorhome.php">Home </a>
 				<a class="nav-item nav-link" href="activatequestion.php">Activate Question (with insights)</a>
-				<a class="nav-item nav-link" href="displayscores.html">Display Scores</a>
+				<a class="nav-item nav-link" href="displayscores.php">Display Scores</a>
 				<a class="nav-item nav-link active" href="#">Insert New Question<span class="sr-only">(current)</span></a>
 				<a class="nav-item nav-link" href="editquestion.php">Edit Question</a>
 				<a class="nav-item nav-link" href="deletequestion.php">Delete Question</a>
