@@ -1,4 +1,39 @@
 <?php
+function set_student_password($id, $newPassword){
+	global $db;
+
+    try
+    {
+        $query = "UPDATE students SET password = '$newPassword'
+                  WHERE id = '$id'";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        return true;
+    }
+    catch (PDOException $e)
+    {
+        dbDisconnect();
+    }
+}
+
+function set_instructor_password($id, $newPassword){
+	global $db;
+
+    try
+    {
+        $query = "UPDATE instructors SET password = '$newPassword'
+                  WHERE id = '$id'";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        return true;
+    }
+    catch (PDOException $e)
+    {
+        dbDisconnect();
+		exit($e);
+    }
+}
+
 
   function retrieve_by_query($query) {
 	  global $db;
@@ -50,6 +85,12 @@
     }
   }
 
+  function max_score_of_question($id){
+	$points = retrieve_by_query("SELECT points FROM questions WHERE id = " . $id);
+	$points = $points[0]['points'];
+	return $points;
+  }
+
   function make_score($studentid, $questionid, $score, $answer) {
   $id = null;
   global $db;
@@ -58,6 +99,27 @@
       $query = "INSERT INTO scores VALUES (?,?,?,?,?)";
       $stmt = $db->prepare($query);
       $stmt->execute([$id, $studentid, $questionid, $score, $answer]);
+	  //update number of correct answers for this question
+		  //get max score of question
+		  $maxScore = max_score_of_question($questionid);
+		  //get correct answers
+		  $correctAnswers = retrieve_by_query("SELECT * FROM scores WHERE question_id = " . $questionid . " AND score = " . $maxScore);
+		  $numberOfCorrectAnswers = sizeof($correctAnswers);
+		  //update the questions number of correct answers field
+		  edit_number_correct_answers($numberOfCorrectAnswers, $questionid);
+	  //update the average points earned for this question
+		  //get total points earned
+		  $answers = retrieve_by_query("SELECT * FROM scores WHERE question_id = " . $questionid);
+		  $totalPoints = 0;
+		  foreach($answers as $temp){
+			$totalPoints += $temp['score'];
+		  }
+		  //get total number of answers
+		  $numberOfAnswers = sizeof($answers);
+		  //get average
+		  $average_points_earned = floatval($totalPoints) / floatval($numberOfAnswers);
+		  //update the questions average points earched field
+		  edit_average_points_earned($average_points_earned, $questionid);
       return true;
     } catch (PDOException $e) {
         dbDisconnect();
@@ -65,6 +127,43 @@
 		exit($e);
     }
 
+  }
+
+function edit_average_points_earned($average_points_earned, $id)
+  {
+    global $db;
+
+    try
+    {
+        $query = "UPDATE questions SET average_points_earned = $average_points_earned
+                  WHERE id = '$id'";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        return true;
+    }
+    catch (PDOException $e)
+    {
+        dbDisconnect();
+		exit($e);
+    }
+  }
+
+function edit_number_correct_answers($number_correct_answers, $id)
+  {
+    global $db;
+
+    try
+    {
+        $query = "UPDATE questions SET number_correct_answers = $number_correct_answers
+                  WHERE id = '$id'";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        return true;
+    }
+    catch (PDOException $e)
+    {
+        dbDisconnect();
+    }
   }
 
   function retrieve_question($keywords,$description,$section_number,$points,$score_earned) {
@@ -479,9 +578,7 @@
 
     try
     {
-      $query = "UPDATE instructors
-                SET number_password_changes = number_password_changes + 1
-                WHERE username = '$username'";
+      $query = "UPDATE instructors SET number_password_changes = number_password_changes + 1 WHERE username = '$username'";
       $stmt = $db->prepare($query);
       $stmt->execute();
       return true;
