@@ -51,7 +51,7 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
             <a class="nav-item nav-link" href="displayscores.html">Display Scores</a>
             <a class="nav-item nav-link" href="insertnewquestion.php">Insert New Question</a>
             <a class="nav-item nav-link active" href="#">Edit Question<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="deletequestion.html">Delete Question</a>
+            <a class="nav-item nav-link" href="deletequestion.php">Delete Question</a>
             <a class="nav-item nav-link" href="instructor_logout.php">Logout</a>
          </div>
     </div>

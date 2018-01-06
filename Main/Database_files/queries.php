@@ -36,6 +36,20 @@
 
   }
 
+  function delete_question($id){
+	global $db;
+    try {
+      $query = "DELETE FROM questions WHERE id = " . $id;
+      $stmt = $db->prepare($query);
+      $stmt->execute();
+      return true;
+    } catch (PDOException $e) {
+        dbDisconnect();
+        //exit("Aborting: There was a database error when trying to insert the question.");
+		exit($e);
+    }
+  }
+
   function make_score($studentid, $questionid, $score, $answer) {
   $id = null;
   global $db;

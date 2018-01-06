@@ -1,5 +1,10 @@
 <?php
-
+session_start();
+if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
+{
+    header("Location: instructorlogin.html");
+    exit();
+}
 include_once('../Database_files/initialize.php');
 
 if ($_SERVER['REQUEST_METHOD'] === "POST")

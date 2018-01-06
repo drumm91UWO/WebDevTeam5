@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+<?php
+session_start();
+if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
+{
+    header("Location: instructorlogin.html");
+    exit();
+}
+require_once('../Database_files/initialize.php');
+?>
+<!DOCTYPE html>
 <html lang=en>
 <head>
     <title>Delete Question Page</title>
@@ -26,8 +35,6 @@
 </head>
 <body>
     <h1>Delete Question</h1>
-
-
     <!-- NavBar -->
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,16 +53,28 @@
          </div>
     </div>
     </nav>
-
-
-    <p>
-        <select>
-            <option value="Q1">Q1: Section 1.1.3: Internet and Transmission Control Protocol</option>
-        </select>
-    </p>
-    <p>
-        <button>Delete Question</button>
-    </p>
+	<?php
+	if ($_SERVER['REQUEST_METHOD'] === "POST")
+	{
+		$id = $_POST['id'];
+		delete_question($id);
+		echo "Question with ID:" . $id . " was successfully deleted.<br>";
+	}
+	?>
+    <form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> method="post">
+        <p>
+            <select id="selector" name="id">
+                <?php
+                    $questions = retrieve_all_questions();
+                    $numberOfQuestions = count($questions);
+                    for($x = 0; $x < $numberOfQuestions; $x++){
+                        ?><option value=<?php echo $questions[$x]['id']; ?>><?php echo $questions[$x]['description']; ?></option><?php
+                    }
+                ?>
+            </select>
+        </p>
+        <input type="submit" id="button" value="Submit"><br>
+    </form>
 </body>
 <footer>
     <p>
