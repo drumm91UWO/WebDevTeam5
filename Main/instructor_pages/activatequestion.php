@@ -50,7 +50,7 @@ error_reporting ( E_ALL | E_STRICT );
             <a class="nav-item nav-link" href="instructorhome.php">Home </a>
             <a class="nav-item nav-link active" href="activatequestion.php">Activate Question (with insights)<span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="displayscores.html">Display Scores</a>
-            <a class="nav-item nav-link" href="insertnewquestion.html">Insert New Question</a>
+            <a class="nav-item nav-link" href="insertnewquestion.php">Insert New Question</a>
             <a class="nav-item nav-link" href="editquestion.php">Edit Question</a>
             <a class="nav-item nav-link" href="deletequestion.html">Delete Question</a>
             <a class="nav-item nav-link" href="instructor_logout.php">Logout</a>

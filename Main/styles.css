@@ -1,33 +1,90 @@
-h1{
+h1 {
     text-align: center;
     background-color: darkblue;
     color: white;
     font-weight: 800;
 }
-h3{
+
+h3 {
     text-align: center;
 }
-form{
+
+form {
     background-color: azure;
     padding: 10px;
     border-style: inset;
 }
+
 body {
     font-size: larger;
     height: 100%;
 }
-select{
+
+select {
     font-size: x-large;
 }
 
-footer {
+.footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 60px;
 }
 
-a{
+a {
     border-radius: 40px;
     border: 2px solid black;
+}
+
+table.blueTable {
+    border: 2px solid #2C60A4;
+    background-color: #EEE7DB;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+table.blueTable td, table.blueTable th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+}
+
+table.blueTable tbody td {
+    font-size: 13px;
+}
+
+table.blueTable tr:nth-child(even) {
+    background: #DCE4F5;
+}
+
+table.blueTable thead {
+    background: #416FA4;
+}
+
+table.blueTable thead th {
+    font-size: 19px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    border-left: 2px solid #416FA4;
+}
+
+table.blueTable thead th:first-child {
+    border-left: none;
+}
+
+table.blueTable tfoot td {
+    font-size: 13px;
+}
+
+table.blueTable tfoot .links {
+    text-align: right;
+}
+
+table.blueTable tfoot .links a {
+    display: inline-block;
+    background: #FFFFFF;
+    color: #A40808;
+    padding: 2px 8px;
+    border-radius: 5px;
 }

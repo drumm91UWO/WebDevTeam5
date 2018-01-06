@@ -1,5 +1,17 @@
 <?php
 
+  function retrieve_by_query($query) {
+	  global $db;
+	  try {
+		$stmt = $db->prepare($query);
+		$stmt->execute();
+		return  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	  } catch (PDOException $e) {
+		  dbDisconnect();
+		  exit("Aborting: There was a database error when trying to retrieve by query.");
+	  }
+  }
+
   /* insert a new question into the database
      return true or output an error message, disconnect, and exit
    */
@@ -730,6 +742,7 @@
 
           try
           {
+		  /*
             if ($id != "" && $keywords != "" && $section_number  != "" && $points != null)
             {
               $query = "SELECT * FROM questions WHERE time_of_deactivation <> null 
@@ -764,7 +777,7 @@
                 $query = "SELECT * FROM questions WHERE time_of_deactivation <> null
                 AND id = '$id'
                 AND keywords LIKE '$keywords'";
-            }
+            }*/
           }
           catch (PDOException $e)
           {

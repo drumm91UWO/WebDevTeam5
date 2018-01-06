@@ -6,7 +6,6 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -16,8 +15,6 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" 
     integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 
@@ -47,7 +44,7 @@ if (! isset($_SESSION['acct_type']) || $_SESSION['acct_type'] != "instructor")
             <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="activatequestion.php">Activate Question (with insights)</a>
             <a class="nav-item nav-link" href="displayscores.html">Display Scores</a>
-            <a class="nav-item nav-link" href="insertnewquestion.html">Insert New Question</a>
+            <a class="nav-item nav-link" href="insertnewquestion.php">Insert New Question</a>
             <a class="nav-item nav-link" href="editquestion.php">Edit Question</a>
             <a class="nav-item nav-link" href="deletequestion.html">Delete Question</a>
             <a class="nav-item nav-link" href="instructor_logout.php">Logout</a>
